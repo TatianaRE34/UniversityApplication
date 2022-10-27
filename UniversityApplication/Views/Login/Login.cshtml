@@ -1,0 +1,65 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/LoginFunctions.js"></script>
+    <link rel="stylesheet" href="~/Content/css/Login.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in</title>
+</head>
+<body>
+
+    <div class="form-container">
+        <div class="container-content">
+            <div class="header-content">
+                <h1>Login</h1>
+            </div>
+            <div class="message">
+                <p>Log onto our portal.</p>
+            </div>
+            <div class="form-content">
+                <form name="login" action="Login" method="POST">
+
+                    <div class="enter-email">
+                        <div class="label">
+                            <label name="email">Enter Email:</label>
+                        </div>
+                        <div class="input">
+                            <input type="text" id="email" name="email">
+                        </div>
+                    </div>
+                    <div class="enter-password">
+                        <div class="label">
+                            <label for="password">Password:</label>
+                        </div>
+                    </div>
+                    <div class="input">
+                        <input type="password" id="password" name="password">
+                    </div>
+
+
+                    <div class="action">
+                        <div class="btn">
+                            <button type="Submit" id="login" class="login">Login</button>
+                        </div>
+
+                        <div clas="link-content">
+                            <a>Forgot Password?</a><label> New Account?</label><a>Register</a>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
