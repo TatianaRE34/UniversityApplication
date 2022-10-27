@@ -10,11 +10,11 @@
         var username = $("#name").val();
         var email = $("#email").val();
         var password = $("#password").val();
-        var userObject = { Username: username, Email: email, Password: password };
+        var userRegObj = { Username: username, Email: email, Password: password };
         $.ajax({
             type: "POST",
             url: "/Registration/Registration",
-            data: authObj,
+            data: userRegObj,
             dataType: "json",
             success: function (response) {
                 if (response.result) {

@@ -9,11 +9,11 @@
     $("#login").click(function () {
         var email = $("#email").val();
         var password = $("#password").val();
-        var userObject = {Email: email, Password: password };
+        var userLoginObj = {Email: email, Password: password };
         $.ajax({
             type: "POST",
             url: "/Login/Login",
-            data: authObj,
+            data: userLoginObj,
             dataType: "json",
             success: function (response) {
                 if (response.result) {

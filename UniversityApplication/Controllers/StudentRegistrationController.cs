@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,5 +14,18 @@ namespace UniversityApplication.Controllers
         {
             return View();
         }
+
+        public ActionResult StudentRegistration()
+        {
+            return View();
+        }
+
+
+        public ActionResult StudentRegistration(Student student)
+        {
+            return View();
+        }
+
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -9,12 +10,15 @@ namespace DAL.DataAccessLayer
 {
     public class DAL
     {
-        public const string connectionstring = @"server=localhost;database=StudentRegistrationMCV;uid=sa;pwd=sql@tfs2008";
 
+        public string connectionString;
         public SqlConnection connection;
+
         public DAL()
         {
-            connection = new SqlConnection(connectionstring);
+            connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            connection = new SqlConnection(connectionString);
+
             OpenConnection();
         }
         public void OpenConnection()
