@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.BusinessLogic
+namespace Configuration.ConstantValues
 {
-    internal class StudentRegistratioBL
+    public class ErrorMessages
     {
+        
     }
 }

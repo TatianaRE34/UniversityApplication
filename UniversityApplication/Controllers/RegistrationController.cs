@@ -5,27 +5,22 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls.WebParts;
-using DAL.Model;
-using DAL.BusinessLogic;
+using StudentEnrollmentRepository.ModelEntities;
+using StudentEnrollmentRepository.Repository;
 
 namespace UniversityApplication.Controllers
 {
     public class RegistrationController : Controller
     {
-
-        
-        // GET: UserRegistration
-        public IRegistrationBL RegistrationBL;
-
+        public IRegistrationRepository RegistrationBL;
         public RegistrationController()
         {
-            RegistrationBL = new RegistrationBL();  
+            RegistrationBL = new RegistrationRepository();  
         }
-        public RegistrationController(IRegistrationBL registrationBL)
+        public RegistrationController(IRegistrationRepository registrationBL)
         {
             RegistrationBL = registrationBL;
         }
-
         public ActionResult Index()
         {
             return View();
@@ -38,7 +33,7 @@ namespace UniversityApplication.Controllers
         [HttpPost]
         public JsonResult Registration(User userReg)
         {
-            var registrationStatus = RegistrationBL.RegisterNew(userReg);
+            var registrationStatus = RegistrationBL.IsNewUserRegistered(userReg);
                      
            return Json(new { result = registrationStatus, url = Url.Action("Login", "Login") });
             

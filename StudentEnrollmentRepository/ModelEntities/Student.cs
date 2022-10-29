@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Model
+namespace StudentEnrollmentRepository.ModelEntities
 {
     public class Student
     {
@@ -18,6 +18,5 @@ namespace DAL.Model
         private string GuardianName;
         private Subject[] subjects;
         private string Status;
-
     }
 }

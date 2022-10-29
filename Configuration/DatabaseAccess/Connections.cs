@@ -6,22 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.DataAccessLayer
+namespace Configuration.DatabaseAccess
 {
-    public class DAL
-    {
-
+    public class Connections
+    { 
         public string connectionString;
         public SqlConnection connection;
-
-        public DAL()
+        public Connections()
         {
             connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             connection = new SqlConnection(connectionString);
-
-            OpenConnection();
+            OpenDatabaseConnection();
         }
-        public void OpenConnection()
+        public void OpenDatabaseConnection()
         {
             try
             {
@@ -29,16 +26,14 @@ namespace DAL.DataAccessLayer
                 {
                     connection.Close();
                 }
-
                 connection.Open();
             }
-            catch (SqlException ex)
+            catch (SqlException exception)
             {
-                throw ex;
+                throw exception;
             }
         }
-
-        public void CloseConnection()
+        public void CloseDatabaseConnection()
         {
             if (connection != null && connection.State == System.Data.ConnectionState.Open)
             {

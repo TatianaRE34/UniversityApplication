@@ -1,4 +1,8 @@
-﻿$(function () {
+﻿var username = $("#name").val();
+var email = $("#email").val();
+var password = $("#password").val();
+
+$(function () {
     let form = document.querySelector('form');
 
     form.addEventListener('submit', (e) => {
@@ -6,10 +10,10 @@
         return false;
     });
 
+
+
     $("#register").click(function () {
-        var username = $("#name").val();
-        var email = $("#email").val();
-        var password = $("#password").val();
+      
         var userRegObj = { Username: username, Email: email, Password: password };
         $.ajax({
             type: "POST",
@@ -30,3 +34,5 @@
         });
     });
 });
+
+

@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Model
+namespace Configuration.ConstantValues
 {
-    public class Role
+    internal class ConstantSqlQueries
     {
-        public int RoleId { get; set; }
-        public string Name { get; set; }
-
     }
 }

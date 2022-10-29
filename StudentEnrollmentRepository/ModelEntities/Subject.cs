@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Model
-{
+namespace StudentEnrollmentRepository.ModelEntities
+{      
     public class Subject
-    {
+    {  
         private string SubjectName { get; set; }
-        private string SubjectGrade { get; set; }
+        private char SubjectGrade { get; set; }
         private int Points { get; set; }
-
     }
 }

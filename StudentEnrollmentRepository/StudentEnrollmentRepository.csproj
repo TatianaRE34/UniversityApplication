@@ -43,21 +43,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessLogic\LoginBL.cs" />
-    <Compile Include="BusinessLogic\RegistrationBL.cs" />
-    <Compile Include="BusinessLogic\StudentRegistratioBL.cs" />
-    <Compile Include="Class1.cs" />
-    <Compile Include="DataAccessLayer\DAL.cs" />
-    <Compile Include="DataAccessLayer\DbConnect.cs" />
-    <Compile Include="DataAccessLayer\LoginDAL.cs" />
-    <Compile Include="DataAccessLayer\RegistrationDAL.cs" />
-    <Compile Include="DataAccessLayer\StudentRegistrationDAL.cs" />
-    <Compile Include="Model\Role.cs" />
-    <Compile Include="Model\Student.cs" />
-    <Compile Include="Model\Subject.cs" />
-    <Compile Include="Model\User.cs" />
+    <Compile Include="ConstantValues\ConstantSqlQueries.cs" />
+    <Compile Include="ConstantValues\ErrorMessages.cs" />
+    <Compile Include="DatabaseAccess\ILoginDataAccess.cs" />
+    <Compile Include="DatabaseAccess\IRegistrationDataAccess.cs" />
+    <Compile Include="Repository\ILoginRepository.cs" />
+    <Compile Include="Repository\IRegistrationRepository.cs" />
+    <Compile Include="Repository\LoginRepository.cs" />
+    <Compile Include="Repository\RegistrationRepository.cs" />
+    <Compile Include="Repository\StudentRegistratioBL.cs" />
+    <Compile Include="DatabaseAccess\LoginDataAccess.cs" />
+    <Compile Include="DatabaseAccess\RegistrationDataAccess.cs" />
+    <Compile Include="DatabaseAccess\StudentRegistrationDataAccess.cs" />
+    <Compile Include="ModelEntities\Role.cs" />
+    <Compile Include="ModelEntities\Student.cs" />
+    <Compile Include="ModelEntities\Subject.cs" />
+    <Compile Include="ModelEntities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Configuration\Configuration.csproj">
+      <Project>{9e22eb60-aea3-42c8-8c5f-2a2f693cb26d}</Project>
+      <Name>Configuration</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

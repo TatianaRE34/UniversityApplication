@@ -3,31 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using DAL.Model;
-using DAL.BusinessLogic;
+using StudentEnrollmentRepository.ModelEntities;
+using StudentEnrollmentRepository.DatabaseAccess;
+using StudentEnrollmentRepository.Repository;
 
 namespace UniversityApplication.Controllers
 {
     public class LoginController : Controller
     {
-
-        // GET: Login
-
-        public ILoginBL LoginBL;
-
+        public ILoginRepository LoginRepository;
         public LoginController()
         {
-            LoginBL = new LoginBL();
+            LoginRepository = new LoginRepository();
         }
-
-        public LoginController(ILoginBL loginBL)
+        public LoginController(LoginRepository loginRepository)
         {
-            LoginBL = loginBL;
-        }
-
-        public ActionResult Index()
-        {
-            return View();
+            LoginRepository = loginRepository;
         }
         public ActionResult Login()
         {
@@ -36,8 +27,13 @@ namespace UniversityApplication.Controllers
         [HttpPost]
         public JsonResult Login(User userLogin)
         {
-            var loginStatus = LoginBL.UserAuthentication(userLogin);
-            return Json(new { result =loginStatus, url = Url.Action("Index", "Home") });
+            var loginStatus = LoginRepository.IsUserAuthenticated(userLogin);
+            return Json(new { result =loginStatus, url = Url.Action("Index", "Home")});
+        }
+        public ActionResult RedirectRegistration()
+        {
+            var redirectUrl = Url.Action("Registration", "Registration");
+            return View(redirectUrl);
         }
     }
 }

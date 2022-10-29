@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversityApplication", "UniversityApplication\UniversityApplication.csproj", "{BADF46CC-6D7D-4FC7-9991-314DCA5C5DDE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentEnrollment", "UniversityApplication\StudentEnrollment.csproj", "{BADF46CC-6D7D-4FC7-9991-314DCA5C5DDE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{1D1AA66D-AAF9-4D08-BFB3-CE2AED87CAAF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Configuration", "Configuration\Configuration.csproj", "{9E22EB60-AEA3-42C8-8C5F-2A2F693CB26D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentEnrollmentRepository", "StudentEnrollmentRepository\StudentEnrollmentRepository.csproj", "{1D1AA66D-AAF9-4D08-BFB3-CE2AED87CAAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +19,10 @@ Global
 		{BADF46CC-6D7D-4FC7-9991-314DCA5C5DDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BADF46CC-6D7D-4FC7-9991-314DCA5C5DDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BADF46CC-6D7D-4FC7-9991-314DCA5C5DDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E22EB60-AEA3-42C8-8C5F-2A2F693CB26D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E22EB60-AEA3-42C8-8C5F-2A2F693CB26D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E22EB60-AEA3-42C8-8C5F-2A2F693CB26D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E22EB60-AEA3-42C8-8C5F-2A2F693CB26D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1D1AA66D-AAF9-4D08-BFB3-CE2AED87CAAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1D1AA66D-AAF9-4D08-BFB3-CE2AED87CAAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D1AA66D-AAF9-4D08-BFB3-CE2AED87CAAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
