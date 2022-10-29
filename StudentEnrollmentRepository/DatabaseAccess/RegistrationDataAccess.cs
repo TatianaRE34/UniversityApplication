@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography.X509Certificates;
+using StudentEnrollmentRepository.ViewModel;
+
 namespace StudentEnrollmentRepository.DatabaseAccess
 {
     public class RegistrationDataAccess:IRegistrationDataAccess
@@ -17,7 +19,7 @@ namespace StudentEnrollmentRepository.DatabaseAccess
         {
             throw new NotImplementedException();
         }
-        public bool IsNewUserRegistered(User user)
+        public bool IsNewUserRegistered(RegistrationViewModel user)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
             parameters.Add(new SqlParameter("@name", user.Username));

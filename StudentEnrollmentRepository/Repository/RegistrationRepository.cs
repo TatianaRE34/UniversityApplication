@@ -5,23 +5,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using StudentEnrollmentRepository.ViewModel;
 
 namespace StudentEnrollmentRepository.Repository
 {
     public class RegistrationRepository: IRegistrationRepository
     {
-        public IRegistrationDataAccess registrationDataAccess;
+        public IRegistrationDataAccess registrationDA;
         public RegistrationRepository()
         {
-            this.registrationDataAccess = new RegistrationDataAccess();
+            this.registrationDA = new RegistrationDataAccess();
         }
-        public RegistrationRepository(IRegistrationDataAccess registrationDAL)
+        public RegistrationRepository(IRegistrationDataAccess registrationDataAccess)
         {
-            this.registrationDataAccess = registrationDAL;
+            this.registrationDA = registrationDataAccess;
         }
-        public bool IsNewUserRegistered(User user)
+        public bool IsNewUserRegistered(RegistrationViewModel user)
         {
-           return this.registrationDataAccess.IsNewUserRegistered(user);
+           return this.registrationDA.IsNewUserRegistered(user);
         }
     }
 }

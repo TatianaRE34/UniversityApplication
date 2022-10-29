@@ -51,7 +51,6 @@
     <Compile Include="Repository\IRegistrationRepository.cs" />
     <Compile Include="Repository\LoginRepository.cs" />
     <Compile Include="Repository\RegistrationRepository.cs" />
-    <Compile Include="Repository\StudentRegistratioBL.cs" />
     <Compile Include="DatabaseAccess\LoginDataAccess.cs" />
     <Compile Include="DatabaseAccess\RegistrationDataAccess.cs" />
     <Compile Include="DatabaseAccess\StudentRegistrationDataAccess.cs" />
@@ -60,6 +59,7 @@
     <Compile Include="ModelEntities\Subject.cs" />
     <Compile Include="ModelEntities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\RegistrationViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Configuration\Configuration.csproj">

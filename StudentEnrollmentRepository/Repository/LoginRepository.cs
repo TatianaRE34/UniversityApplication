@@ -10,18 +10,18 @@ namespace StudentEnrollmentRepository.Repository
 {    
     public class LoginRepository: ILoginRepository
     {
-        public ILoginDataAccess loginDataAccess;
+        public ILoginDataAccess loginDA;
         public LoginRepository()
         {
-            this.loginDataAccess = new LoginDataAccess();
+            this.loginDA = new LoginDataAccess();
         }
         public LoginRepository(ILoginDataAccess loginDataAccess)
         {
-            this.loginDataAccess = loginDataAccess;
+            this.loginDA = loginDataAccess;
         }
         public bool IsUserAuthenticated(User user)
         {
-            return this.loginDataAccess.IsUserAuthenticated(user);
+            return this.loginDA.IsUserAuthenticated(user);
         }
     }
 }

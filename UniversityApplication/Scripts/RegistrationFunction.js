@@ -1,24 +1,21 @@
-﻿var username = $("#name").val();
-var email = $("#email").val();
-var password = $("#password").val();
-
-$(function () {
+﻿$(function () {
     let form = document.querySelector('form');
-
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         return false;
     });
-
-
+    
 
     $("#register").click(function () {
-      
-        var userRegObj = { Username: username, Email: email, Password: password };
+        var username = $("#name").val();
+        var email = $("#email").val();
+        var password = $("#password").val();
+        var userRegistrationObj = { Username: username, Email: email, Password: password };
+        console.log(userRegistrationObj);
         $.ajax({
             type: "POST",
             url: "/Registration/Registration",
-            data: userRegObj,
+            data: userRegistrationObj,
             dataType: "json",
             success: function (response) {
                 if (response.result) {
@@ -30,7 +27,6 @@ $(function () {
                     return false;
                 }
             },
-
         });
     });
 });

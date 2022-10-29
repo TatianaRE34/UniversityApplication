@@ -1,4 +1,5 @@
 ﻿using StudentEnrollmentRepository.ModelEntities;
+using StudentEnrollmentRepository.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace StudentEnrollmentRepository.Repository
 {
     public interface IRegistrationRepository
     {
-        bool IsNewUserRegistered(User user);
+        bool IsNewUserRegistered(RegistrationViewModel user);
     }
 }

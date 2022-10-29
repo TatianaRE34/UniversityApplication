@@ -1,4 +1,5 @@
 ﻿using StudentEnrollmentRepository.ModelEntities;
+using StudentEnrollmentRepository.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace StudentEnrollmentRepository.DatabaseAccess
 {
     public interface IRegistrationDataAccess
     {
-        bool IsNewUserRegistered(User user);
+        bool IsNewUserRegistered(RegistrationViewModel user);
         void CheckPassword(User user);
     }
 }

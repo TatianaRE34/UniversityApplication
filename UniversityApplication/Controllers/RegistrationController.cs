@@ -7,19 +7,20 @@ using System.Web.Mvc;
 using System.Web.UI.WebControls.WebParts;
 using StudentEnrollmentRepository.ModelEntities;
 using StudentEnrollmentRepository.Repository;
+using StudentEnrollmentRepository.ViewModel;
 
 namespace UniversityApplication.Controllers
 {
     public class RegistrationController : Controller
     {
-        public IRegistrationRepository RegistrationBL;
+        public IRegistrationRepository registrationRepo;
         public RegistrationController()
         {
-            RegistrationBL = new RegistrationRepository();  
+            registrationRepo = new RegistrationRepository();  
         }
         public RegistrationController(IRegistrationRepository registrationBL)
         {
-            RegistrationBL = registrationBL;
+            registrationRepo = registrationBL;
         }
         public ActionResult Index()
         {
@@ -29,15 +30,11 @@ namespace UniversityApplication.Controllers
         {
             return View();
         }
-
         [HttpPost]
-        public JsonResult Registration(User userReg)
+        public JsonResult Registration(RegistrationViewModel userReg)
         {
-            var registrationStatus = RegistrationBL.IsNewUserRegistered(userReg);
-                     
-           return Json(new { result = registrationStatus, url = Url.Action("Login", "Login") });
-            
-           
+           var registrationStatus = registrationRepo.IsNewUserRegistered(userReg);               
+           return Json(new { result = registrationStatus, url = Url.Action("Login", "Login") });      
         }
     }
 }
