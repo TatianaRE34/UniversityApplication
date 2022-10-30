@@ -11,6 +11,6 @@ namespace StudentEnrollmentRepository.DatabaseAccess
     public interface IRegistrationDataAccess
     {
         bool IsNewUserRegistered(RegistrationViewModel user);
-        void CheckPassword(User user);
+        bool IsUsernameValid(RegistrationViewModel user);
     }
 }

@@ -6,6 +6,7 @@
 <head>
     <script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate.min.js"></script>
     <script type="text/javascript" src="~/Scripts/RegistrationFunction.js"></script>
     <link rel="stylesheet" href="~/Content/css/Login.css">
     <meta charset="UTF-8">
@@ -23,43 +24,49 @@
                 <p>Register to our Service</p>
             </div>
             <div class="form-content">
-                <form id="form">
+                <form >
                     <div class="enter-username">
                         <div class="label">
                             <label for="name">Username:</label>
                         </div>
                         <div class="input">
-                            <input type="text" id="name" name="name" required>
+                            <input type="text" id="name" name="name">
                         </div>
+                        <div class="error-msg" id="error-name"></div>
                     </div>
                     <div class="enter-email">
                         <div class="label">
                             <label name="email">Enter Email:</label>
                         </div>
                         <div class="input">
-                            <input type="text" id="email" name="email"  required>
+                            <input type="email" id="email" name="email">
                         </div>
+                        <div class="error-msg" id="error-email"></div>
                     </div>
                     <div class="enter-password">
                         <div class="label">
                             <label for="password">Password:</label>
                         </div>
-                    </div>
-                    <div class="input">
-                        <input type="password" id="password" name="password" required>
+                        <div class="input">
+                            <input type="password" id="password" name="password">
+                        </div>
+                        <div class="error-msg" id="error-password"></div>
                     </div>
                     <div class="confirm-password">
                         <div class="label">
                             <label for="password">Confirm Password:</label>
                         </div>
-                    </div>
-                    <div class="input">
-                        <input type="password" id="confirm-password" name="confirm-password" required>
+
+                        <div class="input">
+                            <input type="password" id="confirm-password" name="confirm-password">
+                        </div>
+                        <div class="error-msg" id="error-confirm-password"></div>
                     </div>
                     <div class="action">
                         <div class="btn">
-                            <button type="Submit" id="register" class="register" value="register">Register</button>
+                            <button type="submit" id="register">Register</button>
                         </div>
+                        <div class="error-msg" id="error-message"></div>
                     </div>
                 </form>
             </div>
