@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace StudentEnrollmentRepository.ConstantValues
 {
-    internal class ConstantSqlQueries
+    public  class ConstantSqlQueries
     {
+        public const string SqlInsertUser = @" INSERT INTO [Users] ([Username],[Email],[Password],[RoleId]) VALUES (@name,@email,@password,)";
     }
+
 }

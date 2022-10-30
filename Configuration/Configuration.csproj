@@ -42,8 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConstantValues\ConstantSqlQueries.cs" />
-    <Compile Include="ConstantValues\ErrorMessages.cs" />
     <Compile Include="DatabaseAccess\Connections.cs" />
     <Compile Include="DatabaseAccess\DbConnect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

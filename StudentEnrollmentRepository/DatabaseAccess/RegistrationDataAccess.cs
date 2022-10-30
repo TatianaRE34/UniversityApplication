@@ -14,7 +14,9 @@ namespace StudentEnrollmentRepository.DatabaseAccess
 {
     public class RegistrationDataAccess:IRegistrationDataAccess
     {
-        public const string SqlInsertUser = @" INSERT INTO [Users] ([Username],[Email],[Password]) VALUES (@name,@email,@password)";
+        private static int DefaultRoleId = 0;
+        public string SqlInsertUser = @" INSERT INTO [Users] ([Username],[Email],[Password],[RoleId]) VALUES (@name,@email,@password," + DefaultRoleId.ToString() + ")";
+
         public void CheckPassword(User user)
         {
             throw new NotImplementedException();

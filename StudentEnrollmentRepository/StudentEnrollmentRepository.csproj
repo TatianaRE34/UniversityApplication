@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConstantValues\ConstantSqlQueries.cs" />
+    <Compile Include="ConstantValues\ConstantValues.cs" />
     <Compile Include="ConstantValues\ErrorMessages.cs" />
     <Compile Include="DatabaseAccess\ILoginDataAccess.cs" />
     <Compile Include="DatabaseAccess\IRegistrationDataAccess.cs" />
