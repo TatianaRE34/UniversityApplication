@@ -10,25 +10,33 @@ using System.Threading.Tasks;
 using System.Security.Cryptography.X509Certificates;
 using StudentEnrollmentRepository.ViewModel;
 using System.Text.RegularExpressions;
+using Configuration.Helper;
+using System.Security.Policy;
 
 namespace StudentEnrollmentRepository.DatabaseAccess
 {
     public class RegistrationDataAccess : IRegistrationDataAccess
-    {
+    {   
         private static int DefaultRoleId = 0;
-        public string SqlInsertUser = @" INSERT INTO [Users] ([Username],[Email],[Password],[RoleId]) VALUES (@name,@email,@password," + DefaultRoleId.ToString() + ")";
+        private static int saltSize = 10;
+        public string SqlInsertUser = @" INSERT INTO [Users] ([Username],[Email],[Password],[RoleId],[Salt]) VALUES (@name,@email,@password," + DefaultRoleId.ToString() + ",@salt)";
+        public string SqlGetUsernameAndEmail = @"SELECT [Username],[Email] FROM [Users] WHERE Username=@username OR Email=@email";
+        public SecurityHelper securityHelper = new SecurityHelper();
         public bool IsNewUserRegistered(RegistrationViewModel user)
         {
-            if (IsEmailValid(user) && IsUsernameValid(user) && IsPasswordValid(user) && ArePasswordsTheSame(user)){ 
+            if (IsEmailValid(user) && IsUsernameValid(user) && IsPasswordValid(user) && ArePasswordsTheSame(user))
+            {
                 List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@name", user.Username));
-            parameters.Add(new SqlParameter("@email", user.Email));
-            parameters.Add(new SqlParameter("@password", user.Password));
-            DbConnect.InsertUpdateDatabase(SqlInsertUser, parameters);
-            return true;
+                HashPassword(user);
+                parameters.Add(new SqlParameter("@name", user.Username));
+                parameters.Add(new SqlParameter("@email", user.Email));
+                parameters.Add(new SqlParameter("@password", user.Password));
+                parameters.Add(new SqlParameter("@salt", user.Salt));
+                DbConnect.InsertUpdateDatabase(SqlInsertUser, parameters);
+                return true;
             }
             return false;
-            
+
         }
         public bool IsUsernameValid(RegistrationViewModel user)
         {
@@ -42,7 +50,6 @@ namespace StudentEnrollmentRepository.DatabaseAccess
         {
             string regex = @"^[^@\s]+@[^@\s]+\.(com|net|org|gov)$";
             return Regex.IsMatch(user.Email, regex, RegexOptions.IgnoreCase);
-
         }
         public bool IsPasswordValid(RegistrationViewModel user)
         {
@@ -55,12 +62,25 @@ namespace StudentEnrollmentRepository.DatabaseAccess
         }
         public bool ArePasswordsTheSame(RegistrationViewModel user)
         {
-            if (user.Password !=user.ConfirmPassword)
+            if (user.Password != user.ConfirmPassword)
             {
                 return false;
             }
             return true;
         }
+        public bool DoesUserExist(RegistrationViewModel user)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            parameters.Add(new SqlParameter("@email", user.Email));
+            return DbConnect.GetDataUsingCondition("SELECT [Email] FROM [Users] WHERE Email = @email", parameters).Rows.Count > 0;
+        }
+        public void HashPassword(RegistrationViewModel user)
+        {
+            string SaltGenerated=securityHelper.CreateSalt(saltSize);
+            user.Salt = SaltGenerated;
+            user.Password = securityHelper.GenerateSHA256Hash(user.Password, user.Salt);
+        }
+
     }
 }
 

@@ -11,5 +11,6 @@ namespace StudentEnrollmentRepository.Repository
     public interface IRegistrationRepository
     {
         bool IsNewUserRegistered(RegistrationViewModel user);
+        bool DoesUserExist(RegistrationViewModel user);
     }
 }

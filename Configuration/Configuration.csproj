@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="DatabaseAccess\Connections.cs" />
     <Compile Include="DatabaseAccess\DbConnect.cs" />
+    <Compile Include="Helper\SecurityHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -12,5 +12,6 @@ namespace StudentEnrollmentRepository.DatabaseAccess
     {
         bool IsNewUserRegistered(RegistrationViewModel user);
         bool IsUsernameValid(RegistrationViewModel user);
+        bool DoesUserExist(RegistrationViewModel user);
     }
 }

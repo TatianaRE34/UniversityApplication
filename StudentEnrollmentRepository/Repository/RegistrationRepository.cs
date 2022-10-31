@@ -24,5 +24,9 @@ namespace StudentEnrollmentRepository.Repository
         {
            return this.registrationDA.IsNewUserRegistered(user);
         }
+        public bool DoesUserExist(RegistrationViewModel user)
+        {
+            return this.registrationDA.DoesUserExist(user);
+        }
     }
 }

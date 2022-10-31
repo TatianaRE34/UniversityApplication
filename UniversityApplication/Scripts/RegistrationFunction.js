@@ -38,14 +38,17 @@
             document.getElementById("error-password").innerHTML = "Password length should be greater than 8 characters";
         } else {
             document.getElementById("error-password").innerHTML = "";
-        }
+        } 
     })
     $("#confirm-password").change(function () {
         var password = $("#password").val();
         var confirmPassword = $("#confirm-password").val();
-        if (password !== confirm) {
+        if (password !== confirmPassword) {
             document.getElementById("error-confirm-password").innerHTML = "Passwords do not match";
         } else {
+            document.getElementById("error-confirm-password").innerHTML = "";
+        }
+        if (confirmPassword == '') {
             document.getElementById("error-confirm-password").innerHTML = "";
         }
     })

@@ -30,5 +30,6 @@ namespace StudentEnrollmentRepository.ViewModel
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Confirm password doesn't match, Type again !")]
         public string ConfirmPassword { set; get; }
+        public string Salt { set; get; }
     }
 }
