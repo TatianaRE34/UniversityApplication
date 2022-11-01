@@ -33,7 +33,6 @@
             document.getElementById("error-password").innerHTML = "";
         }
     })
-
     $("#login").click(function () {
         var email = $("#email").val();
         var password = $("#password").val();
@@ -49,7 +48,7 @@
                     window.location = response.url;
                 }
                 else {
-                    document.getElementById("error-message").innerHTML = 'Unable to Login user';
+                    document.getElementById("error-message").innerHTML = "Account credentials not correct";
                     return false;
                 }
             },

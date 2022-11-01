@@ -6,6 +6,11 @@ using System.Web.Mvc;
 using StudentEnrollmentRepository.ModelEntities;
 using StudentEnrollmentRepository.DatabaseAccess;
 using StudentEnrollmentRepository.Repository;
+using StudentEnrollmentRepository.ViewModel;
+using System.Diagnostics;
+using System.Data.SqlClient;
+using Configuration.DatabaseAccess;
+using System.Data;
 
 namespace UniversityApplication.Controllers
 {
@@ -21,19 +26,15 @@ namespace UniversityApplication.Controllers
             LoginRepository = loginRepository;
         }
         public ActionResult Login()
-        {
+        {       
             return View();
         }
         [HttpPost]
-        public JsonResult Login(User userLogin)
-        {
-            var loginStatus = LoginRepository.IsUserAuthenticated(userLogin);
-            return Json(new { result =loginStatus, url = Url.Action("Index", "Home")});
+        public JsonResult Login(LoginViewModel userLogin)
+        { 
+            var loginStatus = LoginRepository.IsPasswordTheSame(userLogin);
+            return Json(new { result = loginStatus, url = Url.Action("Index", "Home") });
         }
-        public ActionResult RedirectRegistration()
-        {
-            var redirectUrl = Url.Action("Registration", "Registration");
-            return View(redirectUrl);
-        }
+
     }
 }

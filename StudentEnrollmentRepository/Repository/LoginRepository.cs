@@ -1,5 +1,6 @@
 ﻿using StudentEnrollmentRepository.DatabaseAccess;
 using StudentEnrollmentRepository.ModelEntities;
+using StudentEnrollmentRepository.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,9 +20,13 @@ namespace StudentEnrollmentRepository.Repository
         {
             this.loginDA = loginDataAccess;
         }
-        public bool IsUserAuthenticated(User user)
+        public bool IsUserAuthenticated(LoginViewModel user)
         {
             return this.loginDA.IsUserAuthenticated(user);
+        }
+        public bool IsPasswordTheSame(LoginViewModel user)
+        {
+            return this.loginDA.IsPasswordTheSame(user);
         }
     }
 }

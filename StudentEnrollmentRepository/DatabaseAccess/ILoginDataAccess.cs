@@ -1,4 +1,5 @@
 ﻿using StudentEnrollmentRepository.ModelEntities;
+using StudentEnrollmentRepository.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,8 @@ namespace StudentEnrollmentRepository.DatabaseAccess
 {
     public interface ILoginDataAccess
     {
-        bool IsUserAuthenticated(User user);
+        bool IsUserAuthenticated(LoginViewModel user);
+        bool IsPasswordTheSame(LoginViewModel user);
 
     }
 }
