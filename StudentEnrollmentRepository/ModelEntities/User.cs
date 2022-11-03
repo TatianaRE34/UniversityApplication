@@ -28,6 +28,7 @@ namespace StudentEnrollmentRepository.ModelEntities
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Confirm password doesn't match, Type again !")]
         public string ConfirmPassword { set; get; }
+        public int RoleId;
         public User(int userID, string userName, string email, string password)
         {
             UserID = userID;

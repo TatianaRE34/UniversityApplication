@@ -1,5 +1,4 @@
-﻿using StudentEnrollmentRepository.ModelEntities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,15 +6,18 @@ using System.Web.Mvc;
 
 namespace UniversityApplication.Controllers
 {
-    public class StudentRegistrationController : Controller
+    public class AdminController : Controller
     {
+        // GET: Admin
         public ActionResult Index()
         {
             return View();
         }
-        public ActionResult StudentRegistration()
+
+        public ActionResult Admin()
         {
             return View();
         }
+
     }
 }

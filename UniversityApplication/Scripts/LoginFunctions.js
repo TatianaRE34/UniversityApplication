@@ -48,7 +48,7 @@
                     window.location = response.url;
                 }
                 else {
-                    document.getElementById("error-message").innerHTML = "Account credentials not correct";
+                    document.getElementById("error-message").innerHTML = "Account credentials Incorrect";
                     return false;
                 }
             },

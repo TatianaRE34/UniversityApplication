@@ -16,25 +16,43 @@ namespace UniversityApplication.Controllers
 {
     public class LoginController : Controller
     {
-        public ILoginRepository LoginRepository;
-        public LoginController()
+        private readonly ILoginRepository _loginRepository;
+
+        public LoginController(ILoginRepository iLoginRepository)
         {
-            LoginRepository = new LoginRepository();
-        }
-        public LoginController(LoginRepository loginRepository)
-        {
-            LoginRepository = loginRepository;
+            _loginRepository = iLoginRepository;
         }
         public ActionResult Login()
-        {       
+        {
             return View();
         }
         [HttpPost]
         public JsonResult Login(LoginViewModel userLogin)
-        { 
-            var loginStatus = LoginRepository.IsPasswordTheSame(userLogin);
-            return Json(new { result = loginStatus, url = Url.Action("Index", "Home") });
-        }
+        {
+            bool loginStatus = _loginRepository.IsUserAuthenticated(userLogin);
+            LoginViewModel user = _loginRepository.GetUserDetailsWithRoles(userLogin);
+            RoleId userRole = (RoleId)user.RoleId;
 
+            if (loginStatus)
+            {
+                this.Session["CurrentUser"] = user;
+                if (userRole == RoleId.Admin)
+                {
+                    this.Session["CurrentRole"] = user.RoleName;
+                    return Json(new { result = loginStatus, url = Url.Action("Admin", "Admin") });
+                }
+                else if (userRole == RoleId.User)
+                {
+                    this.Session["CurrentRole"] = user.RoleName;
+                    return Json(new { result = loginStatus, url = Url.Action("StudentRegistration", "StudentRegistration") });
+                }
+                else if (userRole == RoleId.Student)
+                {
+                    this.Session["CurrentRole"] = user.RoleName;
+                    return Json(new { result = loginStatus, url = Url.Action("Index", "Home") });
+                }
+            }
+            return Json(new { result = loginStatus, url = Url.Action("Login") });
+        }
     }
 }

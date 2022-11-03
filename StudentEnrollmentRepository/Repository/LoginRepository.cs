@@ -16,17 +16,13 @@ namespace StudentEnrollmentRepository.Repository
         {
             this.loginDA = new LoginDataAccess();
         }
-        public LoginRepository(ILoginDataAccess loginDataAccess)
-        {
-            this.loginDA = loginDataAccess;
-        }
         public bool IsUserAuthenticated(LoginViewModel user)
         {
             return this.loginDA.IsUserAuthenticated(user);
         }
-        public bool IsPasswordTheSame(LoginViewModel user)
+        public LoginViewModel GetUserDetailsWithRoles(LoginViewModel user)
         {
-            return this.loginDA.IsPasswordTheSame(user);
+            return this.loginDA.GetUserDetailsWithRoles(user);
         }
     }
 }

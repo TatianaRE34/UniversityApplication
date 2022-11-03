@@ -5,13 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 namespace StudentEnrollmentRepository.ModelEntities
 {
-    public class Role
+    public enum RoleId
     {
-        enum RoleId
-        {
-            User=0,
-            Admin=1,
-            Student=2,
-        }
+        User = 0,
+        Admin = 1,
+        Student = 2,
     }
 }

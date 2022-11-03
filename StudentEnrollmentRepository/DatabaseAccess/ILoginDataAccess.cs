@@ -11,7 +11,7 @@ namespace StudentEnrollmentRepository.DatabaseAccess
     public interface ILoginDataAccess
     {
         bool IsUserAuthenticated(LoginViewModel user);
-        bool IsPasswordTheSame(LoginViewModel user);
+       LoginViewModel GetUserDetailsWithRoles(LoginViewModel user);
 
     }
 }

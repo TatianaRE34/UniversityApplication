@@ -16,14 +16,10 @@ namespace UniversityApplication.Controllers
     public class RegistrationController : Controller
     { 
         public SecurityHelper securityHelper;
-        public IRegistrationRepository registrationRepo;
+        private readonly IRegistrationRepository _registrationRepo;
         public RegistrationController()
         {
-            registrationRepo = new RegistrationRepository();
-        }
-        public RegistrationController(IRegistrationRepository registrationBL)
-        {
-            registrationRepo = registrationBL;
+            _registrationRepo = new RegistrationRepository();
         }
         public ActionResult Index()
         {
@@ -31,22 +27,18 @@ namespace UniversityApplication.Controllers
         }
         public ActionResult Registration()
         {
-          
             return View();
         }
-
         [HttpPost]
         public JsonResult Registration(RegistrationViewModel userReg)
         {
-            if (registrationRepo.DoesUserExist(userReg))
+            if (_registrationRepo.DoesUserExist(userReg))
             {
                 return Json(new { result = "User already exists" });
             }
             else
             {
-                var registrationStatus = registrationRepo.IsNewUserRegistered(userReg);
-
-
+                var registrationStatus = _registrationRepo.IsNewUserRegistered(userReg);
                 return Json(new { result = registrationStatus, url = Url.Action("Login", "Login") });
             }
         }

@@ -1,7 +1,9 @@
+using StudentEnrollmentRepository.DatabaseAccess;
 using StudentEnrollmentRepository.Repository;
 using System;
-
+using System.Web.Mvc;
 using Unity;
+using Unity.AspNet.Mvc;
 
 namespace UniversityApplication
 {
@@ -10,7 +12,6 @@ namespace UniversityApplication
     /// </summary>
     public static class UnityConfig
     {
-        #region Unity Container
         private static Lazy<IUnityContainer> container =
           new Lazy<IUnityContainer>(() =>
           {
@@ -23,7 +24,6 @@ namespace UniversityApplication
         /// Configured Unity Container.
         /// </summary>
         public static IUnityContainer Container => container.Value;
-        #endregion
 
         /// <summary>
         /// Registers the type mappings with the Unity container.
@@ -35,6 +35,24 @@ namespace UniversityApplication
         /// allows resolving a concrete type even if it was not previously
         /// registered.
         /// </remarks>
+
+        public static IUnityContainer Initialise()
+        {
+            var container = BuildUnityContainer();
+            DependencyResolver.SetResolver(new UnityDependencyResolver(container));
+            return container;
+        }
+
+        private static IUnityContainer BuildUnityContainer()
+        {
+            var container = new UnityContainer();
+
+            // register all your components with the container here  
+            //This is the important line to edit  
+            RegisterTypes(container);
+            return container;
+        }
+
         public static void RegisterTypes(IUnityContainer container)
         {
             // NOTE: To load from web.config uncomment the line below.
@@ -42,7 +60,12 @@ namespace UniversityApplication
             // container.LoadConfiguration();
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
-            
+            container.RegisterType<ILoginRepository, LoginRepository>();
+            container.RegisterType<IRegistrationRepository, RegistrationRepository>();
+            container.RegisterType<ILoginDataAccess, LoginDataAccess>();
+            container.RegisterType<IRegistrationDataAccess, RegistrationDataAccess>();
+
+
         }
     }
 }
