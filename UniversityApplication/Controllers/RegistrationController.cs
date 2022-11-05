@@ -21,10 +21,7 @@ namespace UniversityApplication.Controllers
         {
             _registrationRepo = new RegistrationRepository();
         }
-        public ActionResult Index()
-        {
-            return View();
-        }
+
         public ActionResult Registration()
         {
             return View();

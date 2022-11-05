@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DAL.Properties {
+namespace StudentEnrollmentRepository.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

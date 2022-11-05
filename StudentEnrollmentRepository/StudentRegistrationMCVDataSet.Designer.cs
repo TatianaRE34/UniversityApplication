@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace DAL {
+namespace StudentEnrollmentRepository {
     
     
     /// <summary>
@@ -2667,7 +2667,7 @@ namespace DAL {
         }
     }
 }
-namespace DAL.StudentRegistrationMCVDataSetTableAdapters {
+namespace StudentEnrollmentRepository.StudentRegistrationMCVDataSetTableAdapters {
     
     
     /// <summary>
@@ -2825,7 +2825,7 @@ SELECT SubjectId, SubjectName FROM HSCSubjects WHERE (SubjectId = @SubjectId)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::DAL.Properties.Settings.Default.StudentRegistrationMCVConnectionString;
+            this._connection.ConnectionString = global::StudentEnrollmentRepository.Properties.Settings.Default.StudentRegistrationMCVConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3147,7 +3147,7 @@ SELECT SubjectId, SubjectName FROM HSCSubjects WHERE (SubjectId = @SubjectId)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::DAL.Properties.Settings.Default.StudentRegistrationMCVConnectionString;
+            this._connection.ConnectionString = global::StudentEnrollmentRepository.Properties.Settings.Default.StudentRegistrationMCVConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3503,7 +3503,7 @@ SELECT UserId, StudentId, Name, Surname, Address, PhoneNumber, DateOfBirth, NIC,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::DAL.Properties.Settings.Default.StudentRegistrationMCVConnectionString;
+            this._connection.ConnectionString = global::StudentEnrollmentRepository.Properties.Settings.Default.StudentRegistrationMCVConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3999,7 +3999,7 @@ SELECT UserId, StudentId, Name, Surname, Address, PhoneNumber, DateOfBirth, NIC,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::DAL.Properties.Settings.Default.StudentRegistrationMCVConnectionString;
+            this._connection.ConnectionString = global::StudentEnrollmentRepository.Properties.Settings.Default.StudentRegistrationMCVConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4271,7 +4271,7 @@ SELECT UserId, Username, Email, Password, RoleId, Salt FROM Users WHERE (UserId 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::DAL.Properties.Settings.Default.StudentRegistrationMCVConnectionString;
+            this._connection.ConnectionString = global::StudentEnrollmentRepository.Properties.Settings.Default.StudentRegistrationMCVConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

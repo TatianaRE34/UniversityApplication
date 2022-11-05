@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Ceridian HCM Inc")]
-[assembly: AssemblyProduct("DAL")]
+[assembly: AssemblyProduct("ZDAL")]
 [assembly: AssemblyCopyright("Copyright © Ceridian HCM Inc 2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

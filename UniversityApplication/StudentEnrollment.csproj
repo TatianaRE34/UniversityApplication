@@ -171,7 +171,10 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\Img\Add.png" />
+    <Content Include="Content\css\Img\Remove.png" />
     <Content Include="Content\css\Login.css" />
+    <Content Include="Content\css\student.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -203,6 +206,8 @@
     <Content Include="Scripts\LoginFunctions.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\RegistrationFunction.js" />
+    <Content Include="Scripts\StudentFormFunction.js" />
+    <Content Include="Scripts\StudentRegistrationFunctions.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -224,7 +229,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\css\Img\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Account\" />
   </ItemGroup>

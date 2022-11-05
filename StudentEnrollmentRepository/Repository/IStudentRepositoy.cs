@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudentEnrollmentRepository
+namespace StudentEnrollmentRepository.Repository
 {
-    public class Class1
+    internal interface IStudentRepositoy
     {
     }
 }

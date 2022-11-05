@@ -1,5 +1,7 @@
 using StudentEnrollmentRepository.DatabaseAccess;
 using StudentEnrollmentRepository.Repository;
+using StudentEnrollmentRepository.DatabaseAccess;
+using StudentEnrollmentRepository.Repository;
 using System;
 using System.Web.Mvc;
 using Unity;
@@ -64,7 +66,8 @@ namespace UniversityApplication
             container.RegisterType<IRegistrationRepository, RegistrationRepository>();
             container.RegisterType<ILoginDataAccess, LoginDataAccess>();
             container.RegisterType<IRegistrationDataAccess, RegistrationDataAccess>();
-
+            container.RegisterType<IStudentRegRepository, StudentRegRepository>();
+            container.RegisterType<IStudentRegistrationDataAccess, StudentRegistrationDataAccess>();    
 
         }
     }

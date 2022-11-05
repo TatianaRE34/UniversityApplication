@@ -1,0 +1,80 @@
+html, body{
+    display: flexbox;
+    padding: 0px;
+    margin:0px;
+    background-color: #f7d4ee;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.header{
+    text-align: center;
+    font-size: 18px;
+}
+.page-message{
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 18%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.page{
+    padding-left: 2%;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+  
+}
+.form-container{
+    background-color: azure;
+    position: relative;
+    width: 60%;
+    padding: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    height:1000px;
+}
+.enter-name,.contact-details{
+    border:2px solid skyblue  ;
+    border-style: dashed;
+    padding: 10px;
+}
+.name-segment,.other-details,.contact,.addresses{
+    display: grid;
+    grid-template-columns: auto auto;
+    width: 100%;
+}
+.add-remove-btn{
+    margin: auto;
+    width: 100%;
+
+}
+#add-dropdown-btn{
+position:relative;
+background-image: url("Img/Add.png");
+background-size: cover;
+width: 25px;
+height:25px;
+background-color: transparent;
+border: none;
+max-height: max-content;
+}
+#remove-dropdown-btn{
+background-image: url("Img/Remove.png");
+position: relative;
+background-size: cover;
+width: 25px;
+height:25px;
+background-color: transparent;
+border: none;
+}
+.info-header{
+    font-size: 16px;
+    padding-bottom: 2%;
+    padding-top: 2%;
+}
+.info-input{
+    width: inherit;
+}
+.next-subject{
+    height:inherit;
+}
