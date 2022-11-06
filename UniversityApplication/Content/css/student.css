@@ -31,14 +31,14 @@ html, body{
     margin-left: auto;
     margin-right: auto;
     border-radius: 10px;
-    height:1000px;
+    max-height:700px;
 }
-.enter-name,.contact-details{
-    border:2px solid skyblue  ;
+.enter-name, .contact-details, .guardian-details, .hsc-result {
+    border: 2px solid skyblue;
     border-style: dashed;
     padding: 10px;
 }
-.name-segment,.other-details,.contact,.addresses{
+.name-segment, .other-details, .contact, .addresses, .guardian-details-container {
     display: grid;
     grid-template-columns: auto auto;
     width: 100%;
@@ -46,7 +46,6 @@ html, body{
 .add-remove-btn{
     margin: auto;
     width: 100%;
-
 }
 #add-dropdown-btn{
 position:relative;
@@ -78,3 +77,4 @@ border: none;
 .next-subject{
     height:inherit;
 }
+

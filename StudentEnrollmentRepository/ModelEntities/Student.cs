@@ -14,9 +14,9 @@ namespace StudentEnrollmentRepository.ModelEntities
         private string PhoneNumber;
         private string DateOfBirth;
         private string Email;
-        private string NIC;
+        private string NationalIdentificationCard;
         private string GuardianName;
-        private Subject[] subjects;
+        private Result[] Results;
         private string Status;
     }
 }

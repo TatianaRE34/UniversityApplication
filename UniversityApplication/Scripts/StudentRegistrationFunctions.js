@@ -1,18 +1,65 @@
 ﻿$(document).ready(function () {
-    var maximumField = 3;
-    var nextSubject = $('.subject-select');
-    var addField = $('#add-dropdown-btn');
-    var removeField = $('#remove-dropdown-btn');
-    var newSelect = '<select id="SubjectDropDown" name="subjects[]" > <option>1</option></select><button id="remove-dropdown-btn"></button>';
-    var selectCount = 1;
-    $(addField).click(function () {
-        if (selectCount < maximumField) {
-            selectCount++;
-            $('.next-subject').append(newSelect);
+    let form = document.querySelector('form');
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        return false;
+    });
+
+    maxsubject = 3;
+    $("#register").click(function () {
+        var firstName = $("#first-name").val();
+        var surname = $("#surname").val();
+        var dateOfBirth = $("#date-of-birth").val();
+        var nic = $("#nic").val();
+        var mobile = $("#mobile-number").val();
+        var email = $("#email").val();
+        var address = $("#address").val();
+        var guardianName = $("#guardian-name").val(); 
+        var results = [];
+        var subjects = [];
+        for (let index = 0; index < maxsubject; index++) {
+            if (($("#subject" + index).val() != null) && ($("#grade" + index).val() != null)) {
+                if ($.inArray($("#subject" + index).val(), subjects)>=0 && subjects.length!==0) {
+                    console.log("Subject already inserted.");
+                } else {
+                    subjects.push($("#subject" + index).val());
+                    subjectname=$("#subject" + index).val();
+                    grade = $("#grade" + index).val();
+                    results.push({ SubjectName: subjectname, Grade: grade})
+                }
+            } else if(index < 1){
+                document.getElementById("error-results-msg").innerHTML = "Please add Results";
+            }  
         }
-    })
-    $(nextSubject).on('click', '.remove-dropdown-btn', function () {
-        $(this).parent('div').remove();
-        selectCount--;
+        var studentObj = {
+            Name: firstName,
+            Surname: surname,
+            Address: address,
+            PhoneNumber: mobile,
+            DateOfBirth: dateOfBirth,
+            Email: email,
+            NationalIdentificationCard: nic,
+            GuardianName: guardianName,
+            Results: results,
+        }
+        console.log(studentObj)
+            $.ajax({
+                type: "POST",
+                url: "/StudentRegistration/RegisterStudent",
+                data: studentObj,
+                dataType: "json",
+                success: function (response) {
+                    if (response.result) {
+                        document.getElementById("error-message").innerHTML = "Registration Successful";
+                        window.location = response.url;
+                    }
+                    else {
+                        document.getElementById("error-message").innerHTML = 'Unable to Register user';
+                        return false;
+                    }
+                },
+            });
+        
+
     })
 });

@@ -3,7 +3,8 @@
     maxSubject = 3;
 
     $("#add-dropdown-btn").click(function () {
-        var grades=["A","B","C","D","E","F"]
+        var grades = ["A", "B", "C", "D", "E", "F"]
+        document.getElementById("error-results-msg").innerHTML = "";
         if (count < maxSubject) {
             $.ajax({
                 type: "GET",
@@ -39,12 +40,11 @@
                             text: item,
                             }))
                         }
-                    
-
-                    count++;
+                     count++;
                 }
             }
             )
         }
+        
     })
 });

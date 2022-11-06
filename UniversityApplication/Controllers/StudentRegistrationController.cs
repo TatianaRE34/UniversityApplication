@@ -27,6 +27,11 @@ namespace UniversityApplication.Controllers
         {
             return View();
         }
+        public JsonResult RegisterStudent(Student student)
+        {
+            
+            return Json(new { result = "User already exists" });
+        }
         [HttpGet]
         public JsonResult GetAllSubjects()
         {

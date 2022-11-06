@@ -28,5 +28,9 @@ namespace StudentEnrollmentRepository.DatabaseAccess
             return subjectList;
 
         }
+        public bool AddStudent(Student student)
+        {
+            return true;
+        }
     }
 }
