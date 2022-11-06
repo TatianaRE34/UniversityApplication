@@ -10,5 +10,8 @@ namespace StudentEnrollmentRepository.Repository
     public interface IStudentRegRepository
     {
         List<Subject> GetSubjectList();
+        bool RegisterStudent(Student student);
+       
+        
     }
 }

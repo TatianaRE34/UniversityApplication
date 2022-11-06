@@ -36,6 +36,9 @@ namespace UniversityApplication.Controllers
             if (loginStatus)
             {
                 this.Session["CurrentUser"] = user;
+        
+                this.Session["CurrentUserID"] = user.UserID;
+                Debug.WriteLine("this is session:"+ user.UserID);
                 if (userRole == RoleId.Admin)
                 {
                     this.Session["CurrentRole"] = user.RoleName;

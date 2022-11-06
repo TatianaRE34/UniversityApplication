@@ -13,7 +13,6 @@ namespace UniversityApplication.Controllers
     public class StudentRegistrationController : Controller
     {
         private readonly IStudentRegistrationDataAccess _studentDA;
-        
         public StudentRegistrationController()
         {
             this._studentDA = new StudentRegistrationDataAccess();
@@ -22,14 +21,15 @@ namespace UniversityApplication.Controllers
         {
             return View();
         }
-
         public ActionResult StudentRegistration()
         {
             return View();
         }
+        [HttpPost]
         public JsonResult RegisterStudent(Student student)
         {
-            
+            student.UserId = Convert.ToInt32(this.Session["CurrentUserID"]);
+            _studentDA.RegisterStudent(student);
             return Json(new { result = "User already exists" });
         }
         [HttpGet]

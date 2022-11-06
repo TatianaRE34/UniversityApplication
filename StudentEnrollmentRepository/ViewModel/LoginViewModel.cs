@@ -1,4 +1,5 @@
 ﻿using StudentEnrollmentRepository.ConstantValues;
+using StudentEnrollmentRepository.ModelEntities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,6 +11,7 @@ namespace StudentEnrollmentRepository.ViewModel
 {
     public class LoginViewModel
     {
+        public int UserID { set; get; }
         [Required]
         [DataType(DataType.EmailAddress)]
         [RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", ErrorMessage = "E-mail id is not valid")]
@@ -23,8 +25,9 @@ namespace StudentEnrollmentRepository.ViewModel
         public string Password { set; get; }
         public int RoleId { set; get; }
         public string RoleName { set; get; }
-        public LoginViewModel(string email, string password, int roleId, string roleName)
+        public LoginViewModel(int userID,string email, string password, int roleId, string roleName)
         {
+            UserID = userID;
             Email = email;
             Password = password;
             RoleId = roleId;

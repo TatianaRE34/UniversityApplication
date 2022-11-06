@@ -33,8 +33,12 @@ namespace StudentEnrollmentRepository.DatabaseAccess
             var datatable = DbConnect.GetDataUsingCondition(SQLAuthenticationLookup, parameters);
             foreach (DataRow dataRow in datatable.Rows)
             {
-                salt = dataRow["Salt"].ToString();
-                password = dataRow["Password"].ToString();
+                if (datatable.Rows.Count == 1) {
+                    salt = dataRow["Salt"].ToString();
+                     password = dataRow["Password"].ToString();
+                }
+                else { 
+                }
             }
             string hashedLoginPassword = securityHelper.GenerateSHA256Hash(user.Password, salt);
             return hashedLoginPassword == password;
@@ -48,6 +52,7 @@ namespace StudentEnrollmentRepository.DatabaseAccess
             var datatable = DbConnect.GetDataUsingCondition(SQLGetUserDetailsWithRoles, parameters);
             foreach (DataRow row in datatable.Rows)
             {
+                userLogin.UserID = Convert.ToInt32(row["UserId"]);
                 userLogin.RoleId = Convert.ToInt32(row["RoleId"]);
                 userLogin.RoleName = row["RoleName"].ToString();
                 userLogin.Email = row["Email"].ToString();

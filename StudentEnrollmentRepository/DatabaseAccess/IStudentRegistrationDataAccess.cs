@@ -10,5 +10,6 @@ namespace StudentEnrollmentRepository.DatabaseAccess
     public interface IStudentRegistrationDataAccess
     {
         List<Subject> GetSubjectList();
+        bool RegisterStudent(Student student);
     }
 }

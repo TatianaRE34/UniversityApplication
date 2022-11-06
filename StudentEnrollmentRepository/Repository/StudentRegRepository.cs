@@ -15,5 +15,9 @@ namespace StudentEnrollmentRepository.Repository
         {
             return this._studentRegistrationDA.GetSubjectList();
         }
+        public bool RegisterStudent(Student student)
+        {
+            return this._studentRegistrationDA.RegisterStudent(student);
+        }
     }
 }

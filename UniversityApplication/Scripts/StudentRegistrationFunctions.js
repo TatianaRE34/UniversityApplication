@@ -20,7 +20,7 @@
         for (let index = 0; index < maxsubject; index++) {
             if (($("#subject" + index).val() != null) && ($("#grade" + index).val() != null)) {
                 if ($.inArray($("#subject" + index).val(), subjects)>=0 && subjects.length!==0) {
-                    console.log("Subject already inserted.");
+                    document.getElementById("error-results-msg").innerHTML = "Subject already inserted.";
                 } else {
                     subjects.push($("#subject" + index).val());
                     subjectname=$("#subject" + index).val();
@@ -54,7 +54,7 @@
                         window.location = response.url;
                     }
                     else {
-                        document.getElementById("error-message").innerHTML = 'Unable to Register user';
+                        document.getElementById("error-message").innerHTML = 'Unable to Register Student';
                         return false;
                     }
                 },
