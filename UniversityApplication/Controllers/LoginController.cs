@@ -25,7 +25,6 @@ namespace UniversityApplication.Controllers
         {
             return View();
         }
-        
         [HttpPost]
         public JsonResult Login(LoginViewModel userLogin)
         {
