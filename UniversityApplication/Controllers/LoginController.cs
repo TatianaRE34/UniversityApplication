@@ -11,7 +11,6 @@ using System.Diagnostics;
 using System.Data.SqlClient;
 using Configuration.DatabaseAccess;
 using System.Data;
-
 namespace UniversityApplication.Controllers
 {
     public class LoginController : Controller
@@ -26,6 +25,7 @@ namespace UniversityApplication.Controllers
         {
             return View();
         }
+        
         [HttpPost]
         public JsonResult Login(LoginViewModel userLogin)
         {

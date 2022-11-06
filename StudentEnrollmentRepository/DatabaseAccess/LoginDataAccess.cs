@@ -15,7 +15,6 @@ using System.Data;
 using System.Security.Cryptography.X509Certificates;
 using System.Globalization;
 using System.Reflection;
-
 namespace StudentEnrollmentRepository.DatabaseAccess
 {
     public class LoginDataAccess : ILoginDataAccess
@@ -23,7 +22,6 @@ namespace StudentEnrollmentRepository.DatabaseAccess
         public const string SQLAuthenticationLookup = @"SELECT [Password],[Salt] FROM [Users] WHERE Email=@email";
         public const string SQLGetUserDetailsWithRoles = @"SELECT U.[UserId],U.[Email],R.[RoleId], R.[RoleName] FROM [Users] as U INNER JOIN [Roles] as R ON U.[RoleId]= R.[RoleId] WHERE U.Email=@email";
         public SecurityHelper securityHelper = new SecurityHelper();
-
         public bool IsUserAuthenticated(LoginViewModel user)
         {
             string salt = null;
@@ -46,7 +44,6 @@ namespace StudentEnrollmentRepository.DatabaseAccess
         public LoginViewModel GetUserDetailsWithRoles(LoginViewModel user)
         {
             LoginViewModel userLogin = new LoginViewModel();
-
             List<SqlParameter> parameters = new List<SqlParameter>();
             parameters.Add(new SqlParameter("@email", user.Email));
             var datatable = DbConnect.GetDataUsingCondition(SQLGetUserDetailsWithRoles, parameters);
@@ -56,7 +53,6 @@ namespace StudentEnrollmentRepository.DatabaseAccess
                 userLogin.RoleId = Convert.ToInt32(row["RoleId"]);
                 userLogin.RoleName = row["RoleName"].ToString();
                 userLogin.Email = row["Email"].ToString();
-
             }
             return userLogin;
         }

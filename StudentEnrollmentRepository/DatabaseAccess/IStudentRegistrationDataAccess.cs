@@ -9,6 +9,7 @@ namespace StudentEnrollmentRepository.DatabaseAccess
 {
     public interface IStudentRegistrationDataAccess
     {
+        bool IsInformationUnique(Student student);
         List<Subject> GetSubjectList();
         bool RegisterStudent(Student student);
     }

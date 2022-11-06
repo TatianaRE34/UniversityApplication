@@ -12,7 +12,6 @@ using StudentEnrollmentRepository.ViewModel;
 using System.Text.RegularExpressions;
 using Configuration.Helper;
 using System.Security.Policy;
-
 namespace StudentEnrollmentRepository.DatabaseAccess
 {
     public class RegistrationDataAccess : IRegistrationDataAccess
@@ -36,7 +35,6 @@ namespace StudentEnrollmentRepository.DatabaseAccess
                 return true;
             }
             return false;
-
         }
         public bool IsUsernameValid(RegistrationViewModel user)
         {
@@ -74,13 +72,12 @@ namespace StudentEnrollmentRepository.DatabaseAccess
             parameters.Add(new SqlParameter("@email", user.Email));
             return DbConnect.GetDataUsingCondition("SELECT [Email] FROM [Users] WHERE Email = @email", parameters).Rows.Count > 0;
         }
-        public void HashPassword(RegistrationViewModel user)
+       private void HashPassword(RegistrationViewModel user)
         {
             string SaltGenerated=securityHelper.CreateSalt(saltSize);
             user.Salt = SaltGenerated;
             user.Password = securityHelper.GenerateSHA256Hash(user.Password, user.Salt);
         }
-
     }
 }
 

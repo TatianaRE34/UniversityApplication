@@ -15,7 +15,7 @@ namespace StudentEnrollmentRepository.DatabaseAccess
     public class StudentRegistrationDataAccess:IStudentRegistrationDataAccess
     {   private int UndefinedId = -1;
         private string SqlGetSubject = @"SELECT [SubjectId],[SubjectName] FROM HSCSubjects";
-        private string SqlValidation = @"SELECT [NIC],[PhoneNumber],[Email] FROM Student";
+        private string SqlGetStudent = @"SELECT [NIC],[PhoneNumber],[Email] FROM Student WHERE [NIC]=@nic OR [PhoneNumber]=@phoneNumber OR [Email]=@email";
         private string SqlInsertInStudents =
             @"INSERT INTO Student 
             ([UserId],
@@ -59,6 +59,19 @@ namespace StudentEnrollmentRepository.DatabaseAccess
             E=2,
             F=0
         }
+        public bool IsInformationUnique(Student student)
+        {
+            List<SqlParameter> parameter = new List<SqlParameter>();
+            parameter.Add(new SqlParameter("@nic", student.NationalIdentificationCard));
+            parameter.Add(new SqlParameter("@email", student.Email));
+            parameter.Add(new SqlParameter("@phoneNumber", student.PhoneNumber));
+            var datatable=DbConnect.GetDataUsingCondition(SqlGetStudent, parameter);
+            if (datatable.Rows.Count > 0)
+            {
+                return false;
+            }
+            return true;
+        }
         public List<Subject> GetSubjectList()
         {
            List<Subject> subjectList = new List<Subject>();
@@ -74,7 +87,6 @@ namespace StudentEnrollmentRepository.DatabaseAccess
         }
         public bool RegisterStudent(Student student)
         {
-         
             InsertInStudentTable(student);
             student.StudentId = GetStudentID(student);
             InsertInSubjectResultTable(student);
@@ -82,7 +94,7 @@ namespace StudentEnrollmentRepository.DatabaseAccess
         }
         private void InsertInStudentTable(Student student)
         {
-            List<SqlParameter>parameterStudentTable= new List<SqlParameter>();
+            List<SqlParameter> parameterStudentTable = new List<SqlParameter>();
             parameterStudentTable.Add(new SqlParameter("@userId", student.UserId));
             parameterStudentTable.Add(new SqlParameter("@name", student.Name));
             parameterStudentTable.Add(new SqlParameter("@surname",student.Surname));
@@ -146,7 +158,7 @@ namespace StudentEnrollmentRepository.DatabaseAccess
                 student.Status="Rejected";
             }  
         }
-        public int CalculateGradePoints(Student student)
+        private int CalculateGradePoints(Student student)
         {
             int[] grades = (int[])Enum.GetValues(typeof(GradePoints));
             int counter;

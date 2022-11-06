@@ -47,4 +47,8 @@
         }
         
     })
+    $("#remove-dropdown-btn").click(function () {
+        $('#new-subject' + (count - 1)).remove();
+        count--;
+    });
 });

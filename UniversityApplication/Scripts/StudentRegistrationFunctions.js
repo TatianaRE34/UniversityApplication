@@ -4,7 +4,6 @@
         e.preventDefault();
         return false;
     });
-
     maxsubject = 3;
     $("#register").click(function () {
         var firstName = $("#first-name").val();
@@ -59,7 +58,5 @@
                     }
                 },
             });
-        
-
     })
 });

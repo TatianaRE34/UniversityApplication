@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace StudentEnrollmentRepository.Repository
 {
     public class StudentRegRepository: IStudentRegRepository
@@ -18,6 +17,10 @@ namespace StudentEnrollmentRepository.Repository
         public bool RegisterStudent(Student student)
         {
             return this._studentRegistrationDA.RegisterStudent(student);
+        }
+        public bool IsInformationUnique(Student student)
+        {
+            return this._studentRegistrationDA.IsInformationUnique(student);
         }
     }
 }
