@@ -22,5 +22,9 @@ namespace StudentEnrollmentRepository.Repository
         {
             return this._studentRegistrationDA.IsInformationUnique(student);
         }
+        public List<Student> GetStudentsWithGradePoint()
+        {
+            return this._studentRegistrationDA.GetStudentsWithGradePoint();
+        }
     }
 }

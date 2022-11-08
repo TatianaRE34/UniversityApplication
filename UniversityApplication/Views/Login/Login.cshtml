@@ -46,14 +46,17 @@
                     <div class="action">
                         <div class="btn">
                             <button type="Submit" id="login" class="login">Login</button>
+                            <button type="button" onClick="Redirect()"id="register">Register</button>
                             <div class="error-msg" id="error-message"></div>
-                        </div>
-
-                        <div clas="link-content">
-                            <a>Forgot Password?</a><label> New Account?</label><a id="register-link">Register</a>
                         </div>
                     </div>
                 </form>
+                <script type="text/javascript">
+                  function Redirect() {
+                        var url = "@Url.Action("Registration","Registration")";
+                        window.location.pathname = url;
+                   }
+                </script>
             </div>
         </div>
     </div>

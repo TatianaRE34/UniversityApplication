@@ -65,10 +65,17 @@
                     <div class="action">
                         <div class="btn">
                             <button type="submit" id="register">Register</button>
+                            <button type="button" onclick="Redirect()" id="login">Login</button>
                         </div>
                         <div class="error-msg" id="error-message"></div>
                     </div>
                 </form>
+                <script type="text/javascript">
+                  function Redirect() {
+                        var url = "@Url.Action("Login","Login")";
+                        window.location.pathname = url;
+                   }
+                </script>
             </div>
         </div>
     </div>

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace StudentEnrollmentRepository.ModelEntities
 {
     public class Student
@@ -20,6 +19,7 @@ namespace StudentEnrollmentRepository.ModelEntities
         public string GuardianName { set; get; }
         public Result[] Results { set; get; }
         public string Status { set; get; }
+        public int TotalGradePoint { set; get; }
         public Student(){}
        
     }

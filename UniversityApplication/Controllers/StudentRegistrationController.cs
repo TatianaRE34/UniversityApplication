@@ -38,9 +38,9 @@ namespace UniversityApplication.Controllers
             student.UserId = Convert.ToInt32(this.Session["CurrentUserID"]);
             if (_studentDA.IsInformationUnique(student)){
                 _studentDA.RegisterStudent(student);
-                return Json(new {result="Registered"});
+                return Json(new {url = Url.Action("Index", "Home") });
             }
-          return Json(new { result = "Student exists" });
+          return Json(new { url = Url.Action("StudentRegistration", "StudentRegistration") });
         }
         [HttpGet]
         public JsonResult GetAllSubjects()

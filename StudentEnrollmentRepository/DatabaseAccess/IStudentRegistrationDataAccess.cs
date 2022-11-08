@@ -12,5 +12,6 @@ namespace StudentEnrollmentRepository.DatabaseAccess
         bool IsInformationUnique(Student student);
         List<Subject> GetSubjectList();
         bool RegisterStudent(Student student);
+        List<Student> GetStudentsWithGradePoint();
     }
 }

@@ -11,5 +11,6 @@ namespace StudentEnrollmentRepository.Repository
         List<Subject> GetSubjectList();
         bool RegisterStudent(Student student);
         bool IsInformationUnique(Student student);
+        List<Student> GetStudentsWithGradePoint();
     }
 }

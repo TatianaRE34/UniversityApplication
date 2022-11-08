@@ -5,9 +5,6 @@
         return false;
     });
     maxsubject = 3;
-
-
-
     $("#register").click(function () {
         var firstName = $("#first-name").val();
         var surname = $("#surname").val();
@@ -19,6 +16,7 @@
         var guardianName = $("#guardian-name").val(); 
         var results = [];
         var subjects = [];
+        var flag = false;
         for (let index = 0; index < maxsubject; index++) {
             if (($("#subject" + index).val() != null) && ($("#grade" + index).val() != null)) {
                 if ($.inArray($("#subject" + index).val(), subjects)>=0 && subjects.length!==0) {
@@ -31,6 +29,7 @@
                 }
             } else if(index < 1){
                 document.getElementById("error-results-msg").innerHTML = "Please add Results";
+                flag = true;
             }  
         }
         var studentObj = {
@@ -45,6 +44,7 @@
             Results: results,
         }
         console.log(studentObj)
+        if (flag == false) { 
             $.ajax({
                 type: "POST",
                 url: "/StudentRegistration/RegisterStudent",
@@ -61,5 +61,6 @@
                     }
                 },
             });
+        }
     })
 });

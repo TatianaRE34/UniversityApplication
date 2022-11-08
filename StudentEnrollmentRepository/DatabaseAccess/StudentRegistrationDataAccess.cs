@@ -9,13 +9,19 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 
 namespace StudentEnrollmentRepository.DatabaseAccess
 {
     public class StudentRegistrationDataAccess:IStudentRegistrationDataAccess
-    {   private int UndefinedId = -1;
+    {   private const int UndefinedId = -1;
+        private const int MinimumPoints = 10;
+        private const int MaximumSubjects = 3;
+        private string SqlGetCountOPAccepted = @"SELECT COUNT(Status) as AcceptedCount FROM Student WHERE Status='Accepted'";
+        private const int MaxAccepted = 15;
         private string SqlGetSubject = @"SELECT [SubjectId],[SubjectName] FROM HSCSubjects";
-        private string SqlGetStudent = @"SELECT [NIC],[PhoneNumber],[Email] FROM Student WHERE [NIC]=@nic OR [PhoneNumber]=@phoneNumber OR [Email]=@email";
+        private string SqlGetStudent = @"SELECT [NIC],[PhoneNumber],[Email] FROM Student 
+                                        WHERE [NIC]=@nic OR [PhoneNumber]=@phoneNumber OR [Email]=@email";
         private string SqlInsertInStudents =
             @"INSERT INTO Student 
             ([UserId],
@@ -50,14 +56,43 @@ namespace StudentEnrollmentRepository.DatabaseAccess
             ";
         private string SqlGetStudentId = @"SELECT [StudentID] FROM Student WHERE NIC=@nic";
         private string SqlGetSubjectId = @"SELECT [SubjectId] FROM HSCSubjects WHERE SubjectName=@subjectName";
-        private enum GradePoints
+        private string SqlEditRoleId = @"UPDATE [Users] SET [RoleId]=2 WHERE [UserId]=@UserId";
+        private string SqlGetStudentDetails = @"SELECT [StudentId],[Name],[Surname],[Email],[Staus] FROM Student";
+        private string SqlGetStudentResults = @"SELECT [Grade] FROM StudentResult";
+        public List<Student> GetStudentsWithGradePoint()
         {
-            A=10,
-            B=8,
-            C=6,
-            D=4,
-            E=2,
-            F=0
+            List<Student>studentList= new List<Student>();
+            var datatable=DbConnect.GetQueryData(SqlGetStudentDetails);
+            foreach(DataRow row in datatable.Rows)
+            {
+                Student student=new Student();
+                student.StudentId = Convert.ToInt32(row["StudentId"]);
+                student.Name = row["Name"].ToString();
+                student.Surname = row["Surname"].ToString();
+                student.Email = row["Email"].ToString();
+                student.Status = row["Status"].ToString();
+                student.Results = GetStudentGrade(student.StudentId);
+                student.TotalGradePoint=CalculateGradePoints(student);
+                studentList.Add(student);
+            }
+            return studentList;
+        }
+        private Result[] GetStudentGrade(int studentId)
+        {
+            Result[] resultsList = new Result[MaximumSubjects];
+            List<SqlParameter> parameter = new List<SqlParameter>();
+            parameter.Add(new SqlParameter("@studentId", studentId));
+            var datatable = DbConnect.GetDataUsingCondition(SqlGetStudentResults, parameter);
+            int counter = 0;
+            foreach (DataRow row in datatable.Rows)
+            {
+
+                Result result = new Result();
+                result.Grade = row["Grade"].ToString();
+                resultsList[counter] = result;
+                counter++;
+            }
+            return resultsList;
         }
         public bool IsInformationUnique(Student student)
         {
@@ -90,6 +125,7 @@ namespace StudentEnrollmentRepository.DatabaseAccess
             InsertInStudentTable(student);
             student.StudentId = GetStudentID(student);
             InsertInSubjectResultTable(student);
+            UpdateUserRoleId(student);
             return true;
         }
         private void InsertInStudentTable(Student student)
@@ -134,6 +170,14 @@ namespace StudentEnrollmentRepository.DatabaseAccess
                 DbConnect.InsertUpdateDatabase(SqlInsertInHSCResults, parameterSubject);
             } 
         }
+        private void UpdateUserRoleId(Student student)
+        {
+
+            List<SqlParameter> parameter = new List<SqlParameter>();
+            parameter.Add(new SqlParameter("@userId", student.UserId));
+            DbConnect.InsertUpdateDatabase(SqlEditRoleId, parameter);
+
+        }
         private int GetSubjectId(string subjectName)
         {
             int subjectId=UndefinedId;
@@ -149,7 +193,11 @@ namespace StudentEnrollmentRepository.DatabaseAccess
         private void ObtainStatus(Student student)
         {
             int sum=CalculateGradePoints(student);
-            if (sum >= 10)
+            if(sum>=MinimumPoints && CheckAccepted() < MaxAccepted)
+            {
+                student.Status = "Accepted";
+            }
+            else if (sum >= MinimumPoints)
             {
                 student.Status = "Waiting";
             }
@@ -158,7 +206,17 @@ namespace StudentEnrollmentRepository.DatabaseAccess
                 student.Status="Rejected";
             }  
         }
-        private int CalculateGradePoints(Student student)
+        private int CheckAccepted()
+        {
+            int studentsAccepted=UndefinedId;
+            var datatable = DbConnect.GetQueryData(SqlGetCountOPAccepted);
+            foreach(DataRow dataRow in datatable.Rows)
+            {
+                studentsAccepted = Convert.ToInt32(dataRow["AcceptedCount"]);
+            }
+            return studentsAccepted;
+        }
+        public int CalculateGradePoints(Student student)
         {
             int[] grades = (int[])Enum.GetValues(typeof(GradePoints));
             int counter;

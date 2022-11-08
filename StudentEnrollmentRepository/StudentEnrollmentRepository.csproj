@@ -49,6 +49,7 @@
     <Compile Include="DatabaseAccess\ILoginDataAccess.cs" />
     <Compile Include="DatabaseAccess\IRegistrationDataAccess.cs" />
     <Compile Include="DatabaseAccess\IStudentRegistrationDataAccess.cs" />
+    <Compile Include="ModelEntities\Grades.cs" />
     <Compile Include="ModelEntities\Result.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
