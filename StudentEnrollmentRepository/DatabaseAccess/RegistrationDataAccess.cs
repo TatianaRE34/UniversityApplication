@@ -12,14 +12,13 @@ using StudentEnrollmentRepository.ViewModel;
 using System.Text.RegularExpressions;
 using Configuration.Helper;
 using System.Security.Policy;
+using StudentEnrollmentRepository.ConstantValues;
+
 namespace StudentEnrollmentRepository.DatabaseAccess
 {
     public class RegistrationDataAccess : IRegistrationDataAccess
     {   
-        private static int DefaultRoleId = 0;
-        private static int saltSize = 10;
-        public string SqlInsertUser = @" INSERT INTO [Users] ([Username],[Email],[Password],[RoleId],[Salt]) VALUES (@name,@email,@password," + DefaultRoleId.ToString() + ",@salt)";
-        public string SqlGetUsernameAndEmail = @"SELECT [Username],[Email] FROM [Users] WHERE Username=@username OR Email=@email";
+     
         public SecurityHelper securityHelper = new SecurityHelper();
         public bool IsNewUserRegistered(RegistrationViewModel user)
         {
@@ -31,7 +30,7 @@ namespace StudentEnrollmentRepository.DatabaseAccess
                 parameters.Add(new SqlParameter("@email", user.Email));
                 parameters.Add(new SqlParameter("@password", user.Password));
                 parameters.Add(new SqlParameter("@salt", user.Salt));
-                DbConnect.InsertUpdateDatabase(SqlInsertUser, parameters);
+                DbConnect.InsertUpdateDatabase(ConstantSqlQueries.SqlInsertUser, parameters);
                 return true;
             }
             return false;
@@ -74,7 +73,7 @@ namespace StudentEnrollmentRepository.DatabaseAccess
         }
        private void HashPassword(RegistrationViewModel user)
         {
-            string SaltGenerated=securityHelper.CreateSalt(saltSize);
+            string SaltGenerated=securityHelper.CreateSalt(ConstValues.saltSize);
             user.Salt = SaltGenerated;
             user.Password = securityHelper.GenerateSHA256Hash(user.Password, user.Salt);
         }

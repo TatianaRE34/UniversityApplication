@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Configuration.Helper;
+using StudentEnrollmentRepository.ViewModel;
+using StudentEnrollmentRepository.ConstantValues;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,14 +12,12 @@ namespace StudentEnrollmentRepository.ConstantValues
 {
     public  class ConstantSqlQueries
     {
-        public const string SqlInsertUser = @" INSERT INTO [Users] ([Username],[Email],[Password],[RoleId]) VALUES (@name,@email,@password,)";
-        public int UndefinedId = -1;
-        public int MinimumPoints = 10;
-        public string SqlGetCountOPAccepted = @"SELECT COUNT(Status) as AcceptedCount FROM Student WHERE Status='Accepted'";
-        public int MaxAccepted = 15;
-        public string SqlGetSubject = @"SELECT [SubjectId],[SubjectName] FROM HSCSubjects";
-        public string SqlGetStudent = @"SELECT [NIC],[PhoneNumber],[Email] FROM Student WHERE [NIC]=@nic OR [PhoneNumber]=@phoneNumber OR [Email]=@email";
-        public string SqlInsertInStudents =
+        public const string SqlGetCountOPAccepted = @"SELECT COUNT(Status) as AcceptedCount FROM Student WHERE Status='Accepted'";
+
+        public const string SqlGetSubject = @"SELECT [SubjectId],[SubjectName] FROM HSCSubjects";
+        public const string SqlGetStudent = @"SELECT [NIC],[PhoneNumber],[Email] FROM Student 
+                                        WHERE [NIC]=@nic OR [PhoneNumber]=@phoneNumber OR [Email]=@email";
+        public const string SqlInsertInStudents =
             @"INSERT INTO Student 
             ([UserId],
             [Name],
@@ -38,7 +40,7 @@ namespace StudentEnrollmentRepository.ConstantValues
             @guardianName,
             @status,
             @email)  ";
-        public string SqlInsertInHSCResults = @"INSERT INTO StudentResult
+        public const string SqlInsertInHSCResults = @"INSERT INTO StudentResult
             ([StudentId],
             [SubjectId],
             [Grade])
@@ -46,18 +48,16 @@ namespace StudentEnrollmentRepository.ConstantValues
             (@studentId,
             @subjectId,
             @grade)
-            ";
-        public string SqlGetStudentId = @"SELECT [StudentID] FROM Student WHERE NIC=@nic";
-        public string SqlGetSubjectId = @"SELECT [SubjectId] FROM HSCSubjects WHERE SubjectName=@subjectName";
-        public enum GradePoints
-        {
-            A = 10,
-            B = 8,
-            C = 6,
-            D = 4,
-            E = 2,
-            F = 0
-        }
+           ";
+        public const string SqlGetStudentId = @"SELECT [StudentID] FROM Student WHERE NIC=@nic";
+        public const string SqlGetSubjectId = @"SELECT [SubjectId] FROM HSCSubjects WHERE SubjectName=@subjectName";
+        public const string SqlEditRoleId = @"UPDATE [Users] SET [RoleId]=2 WHERE [UserId]=@UserId";
+        public const string SqlGetStudentDetails = @"SELECT [StudentId],[Name],[Surname],[Email],[Status] FROM Student";
+        public const string SqlGetStudentResults = @"SELECT [Grade] FROM StudentResult WHERE StudentId=@studentId";
+        public const string SQLAuthenticationLookup = @"SELECT [Password],[Salt] FROM [Users] WHERE Email=@email";
+        public const string SQLGetUserDetailsWithRoles = @"SELECT U.[UserId],U.[Email],R.[RoleId], R.[RoleName] FROM [Users] as U INNER JOIN [Roles] as R ON U.[RoleId]= R.[RoleId] WHERE U.Email=@email";
+        public static string SqlInsertUser = @" INSERT INTO [Users] ([Username],[Email],[Password],[RoleId],[Salt]) VALUES (@name,@email,@password," + ConstValues.DefaultRoleId.ToString() + ",@salt)";
+        public const string SqlGetUsernameAndEmail = @"SELECT [Username],[Email] FROM [Users] WHERE Username=@username OR Email=@email";
 
     }
 

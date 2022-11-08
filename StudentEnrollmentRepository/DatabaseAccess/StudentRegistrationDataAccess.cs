@@ -10,60 +10,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Schema;
+using StudentEnrollmentRepository.ConstantValues;
 
 namespace StudentEnrollmentRepository.DatabaseAccess
 {
     public class StudentRegistrationDataAccess:IStudentRegistrationDataAccess
-    {   private const int UndefinedId = -1;
-        private const int MinimumPoints = 10;
-        private const int MaximumSubjects = 3;
-        private const int MaxAccepted = 15;
-        private string SqlGetCountOPAccepted = @"SELECT COUNT(Status) as AcceptedCount FROM Student WHERE Status='Accepted'";
-        
-        private string SqlGetSubject = @"SELECT [SubjectId],[SubjectName] FROM HSCSubjects";
-        private string SqlGetStudent = @"SELECT [NIC],[PhoneNumber],[Email] FROM Student 
-                                        WHERE [NIC]=@nic OR [PhoneNumber]=@phoneNumber OR [Email]=@email";
-        private string SqlInsertInStudents =
-            @"INSERT INTO Student 
-            ([UserId],
-            [Name],
-            [Surname],
-            [Address],
-            [PhoneNumber],
-            [DateOfBirth],
-            [NIC],
-            [GuardianName],
-            [Status],
-            [Email])
-            VALUES
-            (@userId,
-            @name,
-            @surname,
-            @address,
-            @phoneNumber,
-            @dateOfBirth,
-            @nationalIdentity,
-            @guardianName,
-            @status,
-            @email)  ";
-        private string SqlInsertInHSCResults =@"INSERT INTO StudentResult
-            ([StudentId],
-            [SubjectId],
-            [Grade])
-            VALUES
-            (@studentId,
-            @subjectId,
-            @grade)
-            ";
-        private string SqlGetStudentId = @"SELECT [StudentID] FROM Student WHERE NIC=@nic";
-        private string SqlGetSubjectId = @"SELECT [SubjectId] FROM HSCSubjects WHERE SubjectName=@subjectName";
-        private string SqlEditRoleId = @"UPDATE [Users] SET [RoleId]=2 WHERE [UserId]=@UserId";
-        private string SqlGetStudentDetails = @"SELECT [StudentId],[Name],[Surname],[Email],[Status] FROM Student";
-        private string SqlGetStudentResults = @"SELECT [Grade] FROM StudentResult WHERE StudentId=@studentId";
+    {   
         public List<Student> GetStudentsWithGradePoint()
         {
             List<Student>studentList= new List<Student>();
-            var datatable=DbConnect.GetQueryData(SqlGetStudentDetails);
+            var datatable=DbConnect.GetQueryData(ConstantSqlQueries.SqlGetStudentDetails);
             foreach(DataRow row in datatable.Rows)
             {
                 Student student=new Student();
@@ -84,7 +40,7 @@ namespace StudentEnrollmentRepository.DatabaseAccess
             List<Result> resultsList = new List<Result>();
             List<SqlParameter> parameter = new List<SqlParameter>();
             parameter.Add(new SqlParameter("@studentId", studentId));
-            var datatable = DbConnect.GetDataUsingCondition(SqlGetStudentResults, parameter);
+            var datatable = DbConnect.GetDataUsingCondition(ConstantSqlQueries.SqlGetStudentResults, parameter);
             foreach (DataRow row in datatable.Rows)
             {
                 Result result = new Result();
@@ -99,7 +55,7 @@ namespace StudentEnrollmentRepository.DatabaseAccess
             parameter.Add(new SqlParameter("@nic", student.NationalIdentificationCard));
             parameter.Add(new SqlParameter("@email", student.Email));
             parameter.Add(new SqlParameter("@phoneNumber", student.PhoneNumber));
-            var datatable=DbConnect.GetDataUsingCondition(SqlGetStudent, parameter);
+            var datatable=DbConnect.GetDataUsingCondition(ConstantSqlQueries.SqlGetStudent, parameter);
             if (datatable.Rows.Count > 0)
             {
                 return false;
@@ -109,7 +65,7 @@ namespace StudentEnrollmentRepository.DatabaseAccess
         public List<Subject> GetSubjectList()
         {
            List<Subject> subjectList = new List<Subject>();
-           var datatable= DbConnect.GetQueryData(SqlGetSubject);
+           var datatable= DbConnect.GetQueryData(ConstantSqlQueries.SqlGetSubject);
             foreach(DataRow row in datatable.Rows)
             {
                Subject subject = new Subject();
@@ -141,13 +97,13 @@ namespace StudentEnrollmentRepository.DatabaseAccess
             parameterStudentTable.Add(new SqlParameter("@guardianName", student.GuardianName));
             ObtainStatus(student);
             parameterStudentTable.Add(new SqlParameter("@status", student.Status));
-            DbConnect.InsertUpdateDatabase(SqlInsertInStudents,parameterStudentTable);
+            DbConnect.InsertUpdateDatabase(ConstantSqlQueries.SqlInsertInStudents,parameterStudentTable);
         }
         private int GetStudentID(Student student) {
-            int studentId= UndefinedId;
+            int studentId = ConstValues.UndefinedId;
             List<SqlParameter> parameterStudent= new List<SqlParameter>();
             parameterStudent.Add(new SqlParameter("@nic", student.NationalIdentificationCard));
-            var datatable =DbConnect.GetDataUsingCondition(SqlGetStudentId, parameterStudent);
+            var datatable =DbConnect.GetDataUsingCondition(ConstantSqlQueries.SqlGetStudentId, parameterStudent);
             foreach(DataRow dataRow in datatable.Rows)
             {
                 studentId = Convert.ToInt32(dataRow["StudentID"]);
@@ -156,7 +112,7 @@ namespace StudentEnrollmentRepository.DatabaseAccess
         }
         private void InsertInSubjectResultTable(Student student)
         {
-            int subjectId=UndefinedId;
+            int subjectId = ConstValues.UndefinedId;
             List<Result> studentResult = student.Results;
             for (int index = 0; index < studentResult.Count; index++)
             {
@@ -166,21 +122,21 @@ namespace StudentEnrollmentRepository.DatabaseAccess
                 parameterSubject.Add(new SqlParameter("@subjectId", subjectId));
                 string grade=studentResult[index].Grade;
                 parameterSubject.Add(new SqlParameter("@grade",grade));
-                DbConnect.InsertUpdateDatabase(SqlInsertInHSCResults, parameterSubject);
+                DbConnect.InsertUpdateDatabase(ConstantSqlQueries.SqlInsertInHSCResults, parameterSubject);
             } 
         }
         private void UpdateUserRoleId(Student student)
         {
             List<SqlParameter> parameter = new List<SqlParameter>();
             parameter.Add(new SqlParameter("@userId", student.UserId));
-            DbConnect.InsertUpdateDatabase(SqlEditRoleId, parameter);
+            DbConnect.InsertUpdateDatabase(ConstantSqlQueries.SqlEditRoleId, parameter);
         }
         private int GetSubjectId(string subjectName)
         {
-            int subjectId=UndefinedId;
+            int subjectId = ConstValues.UndefinedId;
             List<SqlParameter>parametersSubjectName= new List<SqlParameter>();
             parametersSubjectName.Add(new SqlParameter("@subjectName",subjectName));
-            var datatable =DbConnect.GetDataUsingCondition(SqlGetSubjectId, parametersSubjectName);
+            var datatable =DbConnect.GetDataUsingCondition(ConstantSqlQueries.SqlGetSubjectId, parametersSubjectName);
             foreach(DataRow dataRow in datatable.Rows)
             {
                 subjectId = Convert.ToInt32(dataRow["SubjectId"]);
@@ -190,11 +146,11 @@ namespace StudentEnrollmentRepository.DatabaseAccess
         private void ObtainStatus(Student student)
         {
             int sum=CalculateGradePoints(student);
-            if(sum>=MinimumPoints && CheckAccepted() < MaxAccepted)
+            if(sum >= ConstValues.MinimumPoints && CheckAccepted() < ConstValues.MaxAccepted)
             {
                 student.Status = "Accepted";
             }
-            else if (sum >= MinimumPoints)
+            else if (sum >= ConstValues.MinimumPoints)
             {
                 student.Status = "Waiting";
             }
@@ -205,8 +161,8 @@ namespace StudentEnrollmentRepository.DatabaseAccess
         }
         private int CheckAccepted()
         {
-            int studentsAccepted=UndefinedId;
-            var datatable = DbConnect.GetQueryData(SqlGetCountOPAccepted);
+            int studentsAccepted = ConstValues.UndefinedId;
+            var datatable = DbConnect.GetQueryData(ConstantSqlQueries.SqlGetCountOPAccepted);
             foreach(DataRow dataRow in datatable.Rows)
             {
                 studentsAccepted = Convert.ToInt32(dataRow["AcceptedCount"]);
