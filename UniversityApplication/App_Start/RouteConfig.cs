@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Antlr.Runtime.Misc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,8 +17,9 @@ namespace UniversityApplication
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Registration",action = "Registration", id = UrlParameter.Optional }
+                defaults: new { controller = "Admin",action = "Admin", id = UrlParameter.Optional }
             );
         }
     }
 }
+//"Admin",action = "Admin"

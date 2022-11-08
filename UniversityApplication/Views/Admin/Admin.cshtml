@@ -1,7 +1,49 @@
-﻿
-@{
-    ViewBag.Title = "Admin";
+﻿@{
+    Layout = null;
 }
 
-<h2>Admin</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/Admin.js"></script>
+    <script type="text/javascript" src="~/Scripts/CommonUserFunctions.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="~/Scripts/table2csv.js"></script>
+    <title>Admin</title>
+</head>
+<body>
+    <div class="container">
+        <h1>List of Students</h1>
+        <div class="table-container">
+            <table id="student-table">
+                <thead>
+                    <tr>
+                        <th>StudentID</th>
+                        <th>Name</th>
+                        <th>Surame</th>
+                        <th>Email</th>
+                        <th>Points</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="dynamic-table">
+                </tbody>
+            </table>
+            <div class="error-msg"></div>
+        </div>
+        <div class="save-csv">
+            <button type="button" id="save-csv" class="save-csv">Save List</button>
+        </div>
+        <div class="logout">
+            <button type="submit" id="logout" class="logout">Logout</button>
+        </div>
 
+    </div>
+</body>
+</html>

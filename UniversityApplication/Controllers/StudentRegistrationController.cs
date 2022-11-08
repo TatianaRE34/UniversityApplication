@@ -26,12 +26,6 @@ namespace UniversityApplication.Controllers
         {
             return View();
         }
-        public JsonResult Logout()
-        {
-            Session.Clear();
-            Session.Abandon();
-            return Json(new {url = Url.Action("Login", "Login") });
-        }
         [HttpPost]
         public JsonResult RegisterStudent(Student student)
         { 
@@ -48,6 +42,17 @@ namespace UniversityApplication.Controllers
             List<Subject> SubjectList = new List<Subject>();
             SubjectList = _studentDA.GetSubjectList();
             return Json(SubjectList, JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            Response.AppendHeader("Cache-Control", "no-store");
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetExpires(DateTime.Now.AddSeconds(-1));
+            Response.Cache.SetNoStore();
+            Session.Clear();
+            Session.Abandon();
+            return RedirectToAction("Login", "Login");
         }
     }
 }

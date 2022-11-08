@@ -1,4 +1,6 @@
-﻿$(function () {
+﻿const { error } = require("jquery");
+
+$(function () {
     count = 0
     maxSubject = 3;
     maxLengthNIC = 14;
@@ -121,8 +123,12 @@
                             text: item,
                             }))
                         }
-                     count++;
+                    count++;
+                },
+                error: function (error) {
+                   
                 }
+
             }
             )
         }
@@ -132,4 +138,5 @@
         $('#new-subject' + (count - 1)).remove();
         count--;
     });
+    
 });

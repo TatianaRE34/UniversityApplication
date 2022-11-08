@@ -17,6 +17,7 @@
         var results = [];
         var subjects = [];
         var flag = false;
+
         for (let index = 0; index < maxsubject; index++) {
             if (($("#subject" + index).val() != null) && ($("#grade" + index).val() != null)) {
                 if ($.inArray($("#subject" + index).val(), subjects)>=0 && subjects.length!==0) {
@@ -62,5 +63,19 @@
                 },
             });
         }
+    })
+
+    $("#logout").click(function () {
+        $.ajax({
+            type: "GET",
+            url: "/dtudentRegistration/Logout",
+            datatype: "json",
+            success: function (response) {
+                toastr.success("logged out"), 
+                    },
+            error: function (error) {
+                reject(error)
+            },
+        });
     })
 });

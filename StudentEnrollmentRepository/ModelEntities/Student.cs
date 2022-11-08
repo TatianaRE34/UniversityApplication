@@ -17,7 +17,7 @@ namespace StudentEnrollmentRepository.ModelEntities
         public string Email { set; get; }
         public string NationalIdentificationCard { set; get; }
         public string GuardianName { set; get; }
-        public Result[] Results { set; get; }
+        public List<Result> Results { set; get; }
         public string Status { set; get; }
         public int TotalGradePoint { set; get; }
         public Student(){}

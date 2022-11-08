@@ -17,8 +17,9 @@ namespace StudentEnrollmentRepository.DatabaseAccess
     {   private const int UndefinedId = -1;
         private const int MinimumPoints = 10;
         private const int MaximumSubjects = 3;
-        private string SqlGetCountOPAccepted = @"SELECT COUNT(Status) as AcceptedCount FROM Student WHERE Status='Accepted'";
         private const int MaxAccepted = 15;
+        private string SqlGetCountOPAccepted = @"SELECT COUNT(Status) as AcceptedCount FROM Student WHERE Status='Accepted'";
+        
         private string SqlGetSubject = @"SELECT [SubjectId],[SubjectName] FROM HSCSubjects";
         private string SqlGetStudent = @"SELECT [NIC],[PhoneNumber],[Email] FROM Student 
                                         WHERE [NIC]=@nic OR [PhoneNumber]=@phoneNumber OR [Email]=@email";
@@ -57,8 +58,8 @@ namespace StudentEnrollmentRepository.DatabaseAccess
         private string SqlGetStudentId = @"SELECT [StudentID] FROM Student WHERE NIC=@nic";
         private string SqlGetSubjectId = @"SELECT [SubjectId] FROM HSCSubjects WHERE SubjectName=@subjectName";
         private string SqlEditRoleId = @"UPDATE [Users] SET [RoleId]=2 WHERE [UserId]=@UserId";
-        private string SqlGetStudentDetails = @"SELECT [StudentId],[Name],[Surname],[Email],[Staus] FROM Student";
-        private string SqlGetStudentResults = @"SELECT [Grade] FROM StudentResult";
+        private string SqlGetStudentDetails = @"SELECT [StudentId],[Name],[Surname],[Email],[Status] FROM Student";
+        private string SqlGetStudentResults = @"SELECT [Grade] FROM StudentResult WHERE StudentId=@studentId";
         public List<Student> GetStudentsWithGradePoint()
         {
             List<Student>studentList= new List<Student>();
@@ -75,22 +76,20 @@ namespace StudentEnrollmentRepository.DatabaseAccess
                 student.TotalGradePoint=CalculateGradePoints(student);
                 studentList.Add(student);
             }
+            studentList= studentList.OrderByDescending(studentInstance => studentInstance.TotalGradePoint).ThenBy(studentInstance=> studentInstance.Status).ToList();
             return studentList;
         }
-        private Result[] GetStudentGrade(int studentId)
+        private List<Result> GetStudentGrade(int studentId)
         {
-            Result[] resultsList = new Result[MaximumSubjects];
+            List<Result> resultsList = new List<Result>();
             List<SqlParameter> parameter = new List<SqlParameter>();
             parameter.Add(new SqlParameter("@studentId", studentId));
             var datatable = DbConnect.GetDataUsingCondition(SqlGetStudentResults, parameter);
-            int counter = 0;
             foreach (DataRow row in datatable.Rows)
             {
-
                 Result result = new Result();
                 result.Grade = row["Grade"].ToString();
-                resultsList[counter] = result;
-                counter++;
+                resultsList.Add(result);
             }
             return resultsList;
         }
@@ -158,8 +157,8 @@ namespace StudentEnrollmentRepository.DatabaseAccess
         private void InsertInSubjectResultTable(Student student)
         {
             int subjectId=UndefinedId;
-            Result[] studentResult = student.Results;
-            for (int index = 0; index < studentResult.Length; index++)
+            List<Result> studentResult = student.Results;
+            for (int index = 0; index < studentResult.Count; index++)
             {
                 subjectId = GetSubjectId(studentResult[index].SubjectName);
                 List<SqlParameter> parameterSubject= new List<SqlParameter>();
@@ -172,11 +171,9 @@ namespace StudentEnrollmentRepository.DatabaseAccess
         }
         private void UpdateUserRoleId(Student student)
         {
-
             List<SqlParameter> parameter = new List<SqlParameter>();
             parameter.Add(new SqlParameter("@userId", student.UserId));
             DbConnect.InsertUpdateDatabase(SqlEditRoleId, parameter);
-
         }
         private int GetSubjectId(string subjectName)
         {
@@ -221,8 +218,8 @@ namespace StudentEnrollmentRepository.DatabaseAccess
             int[] grades = (int[])Enum.GetValues(typeof(GradePoints));
             int counter;
             int sum = 0 ;
-            Result[] studentResult = student.Results;
-            for (int index = 0; index < studentResult.Length; index++)
+            List<Result> studentResult = student.Results;
+            for (int index = 0; index < studentResult.Count; index++)
             {   counter = 0;
                 foreach (var gradepoint in GradePoints.GetNames(typeof(GradePoints)))
                 {

@@ -17,5 +17,11 @@ namespace UniversityApplication
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+        protected void Application_BeginRequest()
+        {
+            Response.Cache.SetNoStore();
+            Response.Cache.AppendCacheExtension("no-cache");
+            Response.Expires = 0;
+        }
     }
 }

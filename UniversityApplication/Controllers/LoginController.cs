@@ -16,7 +16,6 @@ namespace UniversityApplication.Controllers
     public class LoginController : Controller
     {
         private readonly ILoginRepository _loginRepository;
-
         public LoginController(ILoginRepository iLoginRepository)
         {
             _loginRepository = iLoginRepository;
@@ -35,7 +34,6 @@ namespace UniversityApplication.Controllers
             if (loginStatus)
             {
                 this.Session["CurrentUser"] = user;
-        
                 this.Session["CurrentUserID"] = user.UserID;
                 Debug.WriteLine("this is session:"+ user.UserID);
                 if (userRole == RoleId.Admin)
