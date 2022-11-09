@@ -44,7 +44,7 @@ namespace UniversityApplication.Controllers
             return Json(SubjectList, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
-        public ActionResult Logout()
+        public JsonResult Logout()
         {
             Response.AppendHeader("Cache-Control", "no-store");
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
@@ -52,7 +52,7 @@ namespace UniversityApplication.Controllers
             Response.Cache.SetNoStore();
             Session.Clear();
             Session.Abandon();
-            return RedirectToAction("Login", "Login");
+            return Json(new { url = Url.Action("Login", "Login") },JsonRequestBehavior.AllowGet);
         }
     }
 }

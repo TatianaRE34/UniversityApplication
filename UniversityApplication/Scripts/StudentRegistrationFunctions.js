@@ -13,25 +13,25 @@
         var mobile = $("#mobile-number").val();
         var email = $("#email").val();
         var address = $("#address").val();
-        var guardianName = $("#guardian-name").val(); 
+        var guardianName = $("#guardian-name").val();
         var results = [];
         var subjects = [];
         var flag = false;
 
         for (let index = 0; index < maxsubject; index++) {
             if (($("#subject" + index).val() != null) && ($("#grade" + index).val() != null)) {
-                if ($.inArray($("#subject" + index).val(), subjects)>=0 && subjects.length!==0) {
+                if ($.inArray($("#subject" + index).val(), subjects) >= 0 && subjects.length !== 0) {
                     document.getElementById("error-results-msg").innerHTML = "Subject already inserted.";
                 } else {
                     subjects.push($("#subject" + index).val());
-                    subjectname=$("#subject" + index).val();
+                    subjectname = $("#subject" + index).val();
                     grade = $("#grade" + index).val();
-                    results.push({ SubjectName: subjectname, Grade: grade})
+                    results.push({ SubjectName: subjectname, Grade: grade })
                 }
-            } else if(index < 1){
+            } else if (index < 1) {
                 document.getElementById("error-results-msg").innerHTML = "Please add Results";
                 flag = true;
-            }  
+            }
         }
         var studentObj = {
             Name: firstName,
@@ -45,7 +45,7 @@
             Results: results,
         }
         console.log(studentObj)
-        if (flag == false) { 
+        if (flag == false) {
             $.ajax({
                 type: "POST",
                 url: "/StudentRegistration/RegisterStudent",
@@ -63,5 +63,25 @@
                 },
             });
         }
-    })
-});
+    });
+    $("#logout").click(function () {
+        $.ajax({
+            type: "GET",
+            url: "/StudentRegistration/Logout",
+            dataType: "json",
+            success: function (response) {
+                if (response.result) {
+
+                    window.location = response.url;
+                }
+                else {
+
+                    return false;
+                }
+            },
+
+
+        });
+
+    });
+})
