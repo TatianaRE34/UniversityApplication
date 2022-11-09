@@ -37,7 +37,11 @@ namespace Configuration.DatabaseAccess
                         command.Parameters.AddWithValue(parameter.ParameterName, parameter.Value);
                     });
                 }
-                command.ExecuteNonQuery();
+                try { command.ExecuteNonQuery();}catch(Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+                
             }
             dataAccessConnection.CloseDatabaseConnection();
         }
@@ -57,7 +61,11 @@ namespace Configuration.DatabaseAccess
                 }
                 using (SqlDataAdapter sda = new SqlDataAdapter(command))
                 {
-                    sda.Fill(datatable);
+                    try {sda.Fill(datatable); }catch(Exception ex)
+                    {
+                        Console.WriteLine(ex.ToString());
+                    }
+                    
                 }
             }
             dataAccessConnection.CloseDatabaseConnection();

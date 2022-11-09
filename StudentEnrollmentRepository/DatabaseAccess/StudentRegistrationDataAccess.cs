@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Schema;
 using StudentEnrollmentRepository.ConstantValues;
+using System.Text.RegularExpressions;
 
 namespace StudentEnrollmentRepository.DatabaseAccess
 {
@@ -35,7 +36,7 @@ namespace StudentEnrollmentRepository.DatabaseAccess
             studentList= studentList.OrderBy(studentInstance => studentInstance.Status).ThenByDescending(studentInstance => studentInstance.TotalGradePoint).ToList(); 
             return studentList;
         }
-        private List<Result> GetStudentGrade(int studentId)
+         private List<Result> GetStudentGrade(int studentId)
         {
             
             List<Result> resultsList = new List<Result>();
@@ -78,15 +79,52 @@ namespace StudentEnrollmentRepository.DatabaseAccess
         }
         public bool RegisterStudent(Student student)
         {
-            InsertInStudentTable(student);
-            student.StudentId = GetStudentID(student);
-            InsertInSubjectResultTable(student);
-            UpdateUserRoleId(student);
+            
+                InsertInStudentTable(student);
+                student.StudentId = GetStudentID(student);
+                InsertInSubjectResultTable(student);
+                UpdateUserRoleId(student);
+                return true;
+        }
+        private bool IsStudentValid(Student student)
+        {
+            if (IsDetailsNull(student) == true || IsPhoneNumberValid(student) == true || IsNicValid(student)==true || IsEmailValid(student)==true)
+            {
+                return false;
+            }
             return true;
         }
-        private void InsertInStudentTable(Student student)
+
+        private bool IsDetailsNull(Student student)
         {
-            List<SqlParameter> parameterStudentTable = new List<SqlParameter>();
+            if ((student.Name == null) || (student.Surname == null) || (student.PhoneNumber == null) || (student.Email == null) || (student.Address == null) || (student.DateOfBirth == null) || (student.NationalIdentificationCard == null) || (student.GuardianName == null))
+            {
+                return true;
+            }
+
+            return false;
+        }
+        private bool IsPhoneNumberValid(Student student)
+        {
+            if ((student.PhoneNumber.Length != ConstValues.MaxPhonenumberLength))
+            {
+                return true;
+            }
+            return false;
+        }
+        private bool IsNicValid(Student student)
+        {
+            return (student.PhoneNumber.Length != ConstValues.MaxNICCharacters);
+        }
+        private bool IsEmailValid(Student student)
+        {
+            string regex = @"^[^@\s]+@[^@\s]+\.(com|net|org|gov)$";
+            return Regex.IsMatch(student.Email, regex, RegexOptions.IgnoreCase);
+        }
+        
+            private void InsertInStudentTable(Student student)
+        {
+            { List<SqlParameter> parameterStudentTable = new List<SqlParameter>();
             parameterStudentTable.Add(new SqlParameter("@userId", student.UserId));
             parameterStudentTable.Add(new SqlParameter("@name", student.Name));
             parameterStudentTable.Add(new SqlParameter("@surname",student.Surname));
@@ -98,7 +136,8 @@ namespace StudentEnrollmentRepository.DatabaseAccess
             parameterStudentTable.Add(new SqlParameter("@guardianName", student.GuardianName));
             ObtainStatus(student);
             parameterStudentTable.Add(new SqlParameter("@status", student.Status));
-            DbConnect.InsertUpdateDatabase(ConstantSqlQueries.SqlInsertInStudents,parameterStudentTable);
+            DbConnect.InsertUpdateDatabase(ConstantSqlQueries.SqlInsertInStudents,parameterStudentTable); }
+           
         }
         private int GetStudentID(Student student) {
             int studentId = ConstValues.UndefinedId;

@@ -43,12 +43,12 @@ namespace StudentEnrollmentRepository.DatabaseAccess
             }
             return true;
         }
-        public bool IsEmailValid(RegistrationViewModel user)
+        private bool IsEmailValid(RegistrationViewModel user)
         {
             string regex = @"^[^@\s]+@[^@\s]+\.(com|net|org|gov)$";
             return Regex.IsMatch(user.Email, regex, RegexOptions.IgnoreCase);
         }
-        public bool IsPasswordValid(RegistrationViewModel user)
+        private bool IsPasswordValid(RegistrationViewModel user)
         {
             int minimumPasswordLength = 8;
             if ((user.Password.Length < minimumPasswordLength) || (user.Password == null))
@@ -57,7 +57,7 @@ namespace StudentEnrollmentRepository.DatabaseAccess
             }
             return true;
         }
-        public bool ArePasswordsTheSame(RegistrationViewModel user)
+        private bool ArePasswordsTheSame(RegistrationViewModel user)
         {
             if (user.Password != user.ConfirmPassword)
             {

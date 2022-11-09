@@ -57,4 +57,24 @@
         downloadLink.click();
         document.body.removeChild(downloadLink);
     });
+    $("#logout").click(function () {
+        $.ajax({
+            type: "GET",
+            url: "/Admin/Logout",
+            dataType: "json",
+            success: function (response) {
+                if (response.url) {
+
+                    window.location = response.url;
+                }
+                else {
+
+                    return false;
+                }
+            },
+
+
+        });
+
+    });
 });

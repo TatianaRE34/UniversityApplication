@@ -17,9 +17,8 @@ namespace UniversityApplication
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Admin",action = "Admin", id = UrlParameter.Optional }
+                defaults: new { controller = "Login",action = "Login", id = UrlParameter.Optional }
             );
         }
     }
 }
-//"Admin",action = "Admin"

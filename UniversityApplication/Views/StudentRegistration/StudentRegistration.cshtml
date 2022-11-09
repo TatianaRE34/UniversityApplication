@@ -14,142 +14,113 @@
     <script type="text/javascript" src="~/Scripts/StudentFormFunction.js"></script>
 </head>
 <body>
-    <div class="header">
-        <h1>Student Registration</h1>
-    </div>
-    <div class="page-message">
-        <p>Fill in the form to register to our university.</p>
-    </div>
-    <div class="page">
-        <div class="form-container">
-            <form class="form" id="form">
-                <div class='segment-header'>
-                    <h4>Personal Details</h4>
-                </div>
-                <div class="enter-name">
-                    <div class="name-segment">
-                        <div class="first-name">
-                            <div class="info-header">
-                                <label name="first-name">First Name :</label>
-                            </div>
-                            <div class="info-input">
-                                <input type="text" id="first-name" name="first-name">
-                            </div>
-                            <div class="error-name" id="error-name"></div>
-                        </div>
-                        <div class="surname">
-                            <div class="info-header">
-                                <label name="surname">Surname :</label>
-                            </div>
-                            <div class="info-input">
-                                <input type="text" id="surname" name="surname">
-                            </div>
-                            <div class="error-surname" id="error-surname"></div>
-                        </div>
+    <div class="form-container">
+        <div class="container-content">
+            <div class="header-content">
+                <h1>Student Registration</h1>
+            </div>
+            <div class="message">
+                <p>Fill in the form to register to our university.</p>
+            </div>
+            <form class="form-content" id="form">
+                <h4>Personal Details</h4>
+                <div class="segment">
+                    <div class="label">
+                        <label name="first-name">First Name :</label>
                     </div>
-                    <div class="other-details">
-                        <div class="enter-dob">
-                            <div class="info-header">
-                                <label name="date-of-birth">Date of Birth :</label>
-                            </div>
-                            <div class="info-input">
-                                <input type="date" id="date-of-birth" name="date-of-birth">
-                            </div>
-                            <div class="error-dob" id="error-dob"></div>
-                        </div>
-                        <div class="enter-nic">
-                            <div class="info-header">
-                                <label name="nic">NIC :</label>
-                            </div>
-                            <div class="info-input">
-                                <input type="text" id="nic" name="nic">
-                            </div>
-                     <div class="error-nic" id="error-nic"></div>
-                        </div>
-                        
+                    <div class="input">
+                        <input type="text" id="first-name" name="first-name">
                     </div>
-                    <div class="guardian-name">
-                        <div class="info-header">
+                    <div class="error-name" id="error-name"></div>
+
+                    <div class="label">
+                        <label name="surname">Surname :</label>
+                    </div>
+                    <div class="input">
+                        <input type="text" id="surname" name="surname">
+                    </div>
+                    <div class="error-surname" id="error-surname"></div>
+
+                    <div class="label">
+                        <label name="date-of-birth">Date of Birth :</label>
+                    </div>
+                    <div class="input">
+                        <input type="date" id="date-of-birth" name="date-of-birth">
+                    </div>
+                    <div class="error-dob" id="error-dob"></div>
+                    <div class="label">
+                        <label name="nic">NIC :</label>
+                    </div>
+                    <div class="input">
+                        <input type="text" id="nic" name="nic">
+                        <div class="error-nic" id="error-nic"></div>
+                        <div class="label">
                             <label name="guardian-name">Guardian Name :</label>
                         </div>
-                        <div class="info-input">
+                        <div class="input">
 
                             <input type="text" id="guardian-name" name="guardian-name">
                         </div>
                         <div class="error-guardianName" id="error-guardianName"></div>
+
                     </div>
-                </div>
-                <div class='segment-header'>
-                    <h4>Contact</h4>
-                </div>
-                <div class="contact-details">
-                    <div class="contact">
-                        <div class="mobile-nuber">
-                            <div class="info-header">
-                                <label name="mobile-number">Mobile Number  :</label>
-                            </div>
-                            <div class="info-input">
-                                <input type="text" id="mobile-number" name="mobile-nuber">
-                            </div>
-                            <div class="error-mobile-number" id="error-mobile-number"></div>
+                    </div>
+                    <div class='segment'>
+                        <h4>Contact</h4>
+                        <div class="label">
+                            <label name="mobile-number">Mobile Number  :</label>
                         </div>
-                    </div>
-                    <div class="addresses">
-                        <div class="email-part">
-                            <div class="enter-email">
-                                <div class="info-header">
-                                    <label name="email">Email Address:</label>
+                        <div class="input">
+                            <input type="text" id="mobile-number" name="mobile-nuber">
+                        </div>
+                        <div class="error-mobile-number" id="error-mobile-number"></div>
+
+                        <div class="label">
+                            <label name="email">Email Address:</label>
+                        </div>
+                        <div class="input">
+                            <input type="email" id="email" name="email">
+                        </div>
+                        <div class="error-email" id="error-email">
+                        </div>
+                        <div class="label">
+                            <label name="address">Address:</label>
+                        </div>
+                        <div class="input">
+                            <input type="text" id="address" name="address">
+                        </div>
+                        <div class="error-address" id="error-address">
+                        </div>
+                        <div class="segmentheader">
+                            <h4>HSC Results</h4>
+
+                            <div class="hsc-result">
+                                <div class='segment-header'>
+                                    <div class="btns">
+                                        <button type="button" name='btn' id="add-dropdown-btn"></button>
+                                        <button type="button" name='btn' id="remove-dropdown-btn"></button>
+                                    </div>
+                                    <div class="dynamic-subject">
+                                    </div>
+                                    <div id="error-results-msg"></div>
                                 </div>
-                                <div class="info-input">
-                                    <input type="email" id="email" name="email">
-                                </div>
-                                <div class="error-email" id="error-email">
-                            </div>
                             </div>
                         </div>
-                        
-                    </div>
-                    <div class="address-part">
-                        <div class="enter-address">
-                            <div class="info-header">
-                                <label name="address">Address:</label>
+                        <div class="action">
+                            <div class="btn">
+                                <button type="Submit" id="register" class="register">Register</button>
+                                <div class="error-msg" id="error-message"></div>
                             </div>
-                            <div class="info-input">
-                                <input type="text" id="address" name="address">
+                            <div class="btn">
+                                <button type="Submit" id="logout" class="logout">Logout</button>
                             </div>
-                            <div class="error-address" id="error-address">
                         </div>
                         </div>
-                    </div>
-                </div>
-                <div class="hsc-results-header">
-                    <h4>HSC Results</h4>
-                </div>
-                <div class="hsc-result">
-                    <div class='segment-header'>
-                        <div class="btns">
-                            <button type="button" id="add-dropdown-btn"></button>
-                            <button type="button" id="remove-dropdown-btn"></button>
-                        </div>
-                        <div class="dynamic-subject">
-                        </div>
-                        <div id="error-results-msg"></div>
-                    </div>
-                </div>
-                <div class="action">
-                    <div class="btn">
-                        <button type="Submit" id="register" class="register">Register</button>
-                        <div class="error-msg" id="error-message"></div>
-                    </div>
-                    <div class="btn">
-                        <button type="Submit" id="logout" class="logout">Logout</button>
-                    </div>
-                </div>
             </form>
+
         </div>
     </div>
 </body>
 </html>
-
 
 

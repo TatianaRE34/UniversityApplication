@@ -11,6 +11,9 @@ using System.Diagnostics;
 using System.Data.SqlClient;
 using Configuration.DatabaseAccess;
 using System.Data;
+using Microsoft.Ajax.Utilities;
+using System.Web.UI.WebControls;
+
 namespace UniversityApplication.Controllers
 {
     public class LoginController : Controller
@@ -35,7 +38,7 @@ namespace UniversityApplication.Controllers
             {
                 this.Session["CurrentUser"] = user;
                 this.Session["CurrentUserID"] = user.UserID;
-                Debug.WriteLine("this is session:"+ user.UserID);
+                Debug.WriteLine("this is session:" + user.UserID);
                 if (userRole == RoleId.Admin)
                 {
                     this.Session["CurrentRole"] = user.RoleName;
@@ -54,5 +57,6 @@ namespace UniversityApplication.Controllers
             }
             return Json(new { result = loginStatus, url = Url.Action("Login") });
         }
+       
     }
 }

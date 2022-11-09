@@ -70,7 +70,7 @@
             url: "/StudentRegistration/Logout",
             dataType: "json",
             success: function (response) {
-                if (response.result) {
+                if (response.url) {
 
                     window.location = response.url;
                 }

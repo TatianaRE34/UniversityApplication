@@ -4,7 +4,7 @@
             type: "Post",
             url: "/Admin/Logout",
             datatype: "json",
-            success: function (response) {
+            success: function (url) {
                 toastr.success("logged out") 
                   },
             error: function (error) {

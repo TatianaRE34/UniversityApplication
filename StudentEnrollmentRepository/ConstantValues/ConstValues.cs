@@ -14,7 +14,8 @@ namespace StudentEnrollmentRepository.ConstantValues
         public const int MaxAccepted = 15;
         public static int DefaultRoleId = 0;
         public static int saltSize = 10;
-
+        public const int MaxPhonenumberLength = 8;
+        public const int MaxNICCharacters = 14;
 
     }
 }

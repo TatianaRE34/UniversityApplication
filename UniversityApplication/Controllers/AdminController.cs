@@ -29,7 +29,7 @@ namespace UniversityApplication.Controllers
             studentsList= _studentDA.GetStudentsWithGradePoint();
             return Json(studentsList, JsonRequestBehavior.AllowGet);
         }
-        [HttpPost]
+        [HttpGet]
         public JsonResult Logout()
         {
             Response.AppendHeader("Cache-Control", "no-store");
@@ -38,7 +38,7 @@ namespace UniversityApplication.Controllers
             Response.Cache.SetNoStore();
             Session.Clear();
             Session.Abandon();
-            return Json(new { url = Url.Action("Login", "Login") });
+            return Json(new { url = Url.Action("Login", "Login") }, JsonRequestBehavior.AllowGet);
         }
 
     }
