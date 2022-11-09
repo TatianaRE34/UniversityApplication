@@ -32,11 +32,12 @@ namespace StudentEnrollmentRepository.DatabaseAccess
                 student.TotalGradePoint=CalculateGradePoints(student);
                 studentList.Add(student);
             }
-            studentList= studentList.OrderByDescending(studentInstance => studentInstance.TotalGradePoint).ThenBy(studentInstance=> studentInstance.Status).ToList();
+            studentList= studentList.OrderBy(studentInstance => studentInstance.Status).ThenByDescending(studentInstance => studentInstance.TotalGradePoint).ToList(); 
             return studentList;
         }
         private List<Result> GetStudentGrade(int studentId)
         {
+            
             List<Result> resultsList = new List<Result>();
             List<SqlParameter> parameter = new List<SqlParameter>();
             parameter.Add(new SqlParameter("@studentId", studentId));

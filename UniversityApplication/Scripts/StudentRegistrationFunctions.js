@@ -64,18 +64,4 @@
             });
         }
     })
-
-    $("#logout").click(function () {
-        $.ajax({
-            type: "GET",
-            url: "/dtudentRegistration/Logout",
-            datatype: "json",
-            success: function (response) {
-                toastr.success("logged out"), 
-                    },
-            error: function (error) {
-                reject(error)
-            },
-        });
-    })
 });

@@ -24,59 +24,52 @@
                 <p>Register to our Service</p>
             </div>
             <div class="form-content">
-                <form >
-                    <div class="enter-username">
-                        <div class="label">
-                            <label for="name">Username:</label>
-                        </div>
-                        <div class="input">
-                            <input type="text" id="name" name="name">
-                        </div>
-                        <div class="error-msg" id="error-name"></div>
-                    </div>
-                    <div class="enter-email">
-                        <div class="label">
-                            <label name="email">Enter Email:</label>
-                        </div>
-                        <div class="input">
-                            <input type="email" id="email" name="email">
-                        </div>
-                        <div class="error-msg" id="error-email"></div>
-                    </div>
-                    <div class="enter-password">
-                        <div class="label">
-                            <label for="password">Password:</label>
-                        </div>
-                        <div class="input">
-                            <input type="password" id="password" name="password">
-                        </div>
-                        <div class="error-msg" id="error-password"></div>
-                    </div>
-                    <div class="confirm-password">
-                        <div class="label">
-                            <label for="password">Confirm Password:</label>
-                        </div>
+                <form name="registe">
 
-                        <div class="input">
-                            <input type="password" id="confirm-password" name="confirm-password">
-                        </div>
-                        <div class="error-msg" id="error-confirm-password"></div>
+                    <div class="label">
+                        <label for="name">Username:</label>
                     </div>
+                    <div class="input">
+                        <input type="text" id="name" name="name">
+                    </div>
+                    <div class="error-msg" id="error-name"></div>
+
+                    <div class="label">
+                        <label name="email">Enter Email:</label>
+                    </div>
+                    <div class="input">
+                        <input type="email" id="email" name="email">
+                    </div>
+                    <div class="error-msg" id="error-email"></div>
+
+
+                    <div class="label">
+                        <label for="password">Password:</label>
+                    </div>
+                    <div class="input">
+                        <input type="password" id="password" name="password">
+                    </div>
+                    <div class="error-msg" id="error-password"></div>
+
+                    <div class="label">
+                        <label for="password">Confirm Password:</label>
+                    </div>
+                    <div class="input">
+                        <input type="password" id="confirm-password" name="confirm-password">
+                    </div>
+                    <div class="error-msg" id="error-confirm-password"></div>
                     <div class="action">
-                        <div class="btn">
-                            <button type="submit" id="register">Register</button>
-                            <button type="button" onclick="Redirect()" id="login">Login</button>
-                        </div>
-                        <div class="error-msg" id="error-message"></div>
+                        <div class="btn"><button type="submit" id="register">Register</button></div>
+                        <div class="btn"><button type="button" onclick="Redirect()" id="login">Login</button></div>
                     </div>
-                </form>
-                <script type="text/javascript">
+                    <div class="error-msg" id="error-message"></div>            </form>
+            <script type="text/javascript">
                   function Redirect() {
                         var url = "@Url.Action("Login","Login")";
                         window.location.pathname = url;
                    }
-                </script>
-            </div>
+            </script>
+        </div>
         </div>
     </div>
 </body>

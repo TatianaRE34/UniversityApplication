@@ -1,6 +1,4 @@
-﻿const { error } = require("jquery");
-
-$(function () {
+﻿$(function () {
     count = 0
     maxSubject = 3;
     maxLengthNIC = 14;
@@ -125,11 +123,7 @@ $(function () {
                         }
                     count++;
                 },
-                error: function (error) {
-                   
-                }
-
-            }
+               }
             )
         }
         

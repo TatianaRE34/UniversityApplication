@@ -35,10 +35,17 @@
             td = item[0].children
             for (i = 0; i < td.length; i++) {
 
-                csv_data.push(td[i].innerText)
+                //csv_data.push(td[i].innerText + ',')
+                console.log(td[i].innerText)
+                var details = (td[i].innerText).split('\t');
+                var studentDetail=''
+                for (let index = 0; index < details.length; index++){
+                    studentDetail += details[index] + ',';
+                }
+                csv_data.push(studentDetail)
             }
-
-            csv_data.push('\r\n')
+           
+            csv_data.push($(this))
         })
 
         var downloadLink = document.createElement("a");
