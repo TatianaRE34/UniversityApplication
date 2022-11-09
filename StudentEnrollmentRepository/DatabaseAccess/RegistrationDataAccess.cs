@@ -13,12 +13,10 @@ using System.Text.RegularExpressions;
 using Configuration.Helper;
 using System.Security.Policy;
 using StudentEnrollmentRepository.ConstantValues;
-
 namespace StudentEnrollmentRepository.DatabaseAccess
-{
+{ 
     public class RegistrationDataAccess : IRegistrationDataAccess
-    {   
-     
+    {       
         public SecurityHelper securityHelper = new SecurityHelper();
         public bool IsNewUserRegistered(RegistrationViewModel user)
         {

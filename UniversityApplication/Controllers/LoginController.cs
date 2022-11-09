@@ -13,7 +13,6 @@ using Configuration.DatabaseAccess;
 using System.Data;
 using Microsoft.Ajax.Utilities;
 using System.Web.UI.WebControls;
-
 namespace UniversityApplication.Controllers
 {
     public class LoginController : Controller
@@ -33,7 +32,6 @@ namespace UniversityApplication.Controllers
             bool loginStatus = _loginRepository.IsUserAuthenticated(userLogin);
             LoginViewModel user = _loginRepository.GetUserDetailsWithRoles(userLogin);
             RoleId userRole = (RoleId)user.RoleId;
-
             if (loginStatus)
             {
                 this.Session["CurrentUser"] = user;
@@ -57,6 +55,5 @@ namespace UniversityApplication.Controllers
             }
             return Json(new { result = loginStatus, url = Url.Action("Login") });
         }
-       
     }
 }

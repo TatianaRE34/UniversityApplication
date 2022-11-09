@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace StudentEnrollmentRepository.ConstantValues
 {
     public class ConstValues
@@ -16,6 +15,5 @@ namespace StudentEnrollmentRepository.ConstantValues
         public static int saltSize = 10;
         public const int MaxPhonenumberLength = 8;
         public const int MaxNICCharacters = 14;
-
     }
 }

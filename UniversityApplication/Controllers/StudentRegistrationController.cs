@@ -8,7 +8,6 @@ using System.Web.Mvc;
 using StudentEnrollmentRepository.Repository;
 using StudentEnrollmentRepository.DatabaseAccess;
 using System.Web.UI.WebControls;
-
 namespace UniversityApplication.Controllers
 {
     public class StudentRegistrationController : Controller
@@ -34,7 +33,7 @@ namespace UniversityApplication.Controllers
                 _studentDA.RegisterStudent(student);
                 return Json(new {url = Url.Action("Index", "Home") });
             }
-          return Json(new { url = Url.Action("StudentRegistration", "StudentRegistration") });
+          return Json(new { url = Url.Action("Index", "Home") });
         }
         [HttpGet]
         public JsonResult GetAllSubjects()

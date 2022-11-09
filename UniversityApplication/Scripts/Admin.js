@@ -20,7 +20,6 @@
             reject(error)
         },
     });
-
     $("#save-csv").click(function () {
         var titles = [];
         var data = [];
@@ -28,9 +27,7 @@
         $('#student-table').each(function () {
             data.push($(this));
         });
-
         csv_data = []
-
         data.forEach(function (item, index) {
             td = item[0].children
             for (i = 0; i < td.length; i++) {
@@ -47,7 +44,6 @@
            
             csv_data.push($(this))
         })
-
         var downloadLink = document.createElement("a");
         var blob = new Blob(["\ufeff", csv_data]);
         var url = URL.createObjectURL(blob);
@@ -64,16 +60,12 @@
             dataType: "json",
             success: function (response) {
                 if (response.url) {
-
                     window.location = response.url;
                 }
                 else {
-
                     return false;
                 }
             },
-
-
         });
 
     });

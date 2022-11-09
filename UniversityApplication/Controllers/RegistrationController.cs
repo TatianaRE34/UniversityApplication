@@ -10,7 +10,6 @@ using StudentEnrollmentRepository.Repository;
 using StudentEnrollmentRepository.ViewModel;
 using Configuration.Helper;
 using System.Diagnostics;
-
 namespace UniversityApplication.Controllers
 {
     public class RegistrationController : Controller
@@ -21,7 +20,6 @@ namespace UniversityApplication.Controllers
         {
             _registrationRepo = new RegistrationRepository();
         }
-
         public ActionResult Registration()
         {
             return View();

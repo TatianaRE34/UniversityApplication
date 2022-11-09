@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 using System.Xml.Schema;
 using StudentEnrollmentRepository.ConstantValues;
 using System.Text.RegularExpressions;
-
 namespace StudentEnrollmentRepository.DatabaseAccess
 {
     public class StudentRegistrationDataAccess:IStudentRegistrationDataAccess
@@ -79,38 +78,41 @@ namespace StudentEnrollmentRepository.DatabaseAccess
         }
         public bool RegisterStudent(Student student)
         {
-            
+            if (IsStudentValid(student) == true) {
                 InsertInStudentTable(student);
                 student.StudentId = GetStudentID(student);
                 InsertInSubjectResultTable(student);
                 UpdateUserRoleId(student);
                 return true;
+            }
+            else
+            {
+                return false;
+            }            
         }
         private bool IsStudentValid(Student student)
         {
-            if (IsDetailsNull(student) == true || IsPhoneNumberValid(student) == true || IsNicValid(student)==true || IsEmailValid(student)==true)
+            if (IsDetailsNull(student) == true || IsPhoneNumberValid(student) == false || IsNicValid(student)==false || IsEmailValid(student)==false)
             {
                 return false;
             }
             return true;
         }
-
         private bool IsDetailsNull(Student student)
         {
             if ((student.Name == null) || (student.Surname == null) || (student.PhoneNumber == null) || (student.Email == null) || (student.Address == null) || (student.DateOfBirth == null) || (student.NationalIdentificationCard == null) || (student.GuardianName == null))
             {
                 return true;
             }
-
             return false;
         }
         private bool IsPhoneNumberValid(Student student)
         {
-            if ((student.PhoneNumber.Length != ConstValues.MaxPhonenumberLength))
+            if (student.PhoneNumber.Length != ConstValues.MaxPhonenumberLength)
             {
-                return true;
+                return false ;
             }
-            return false;
+            return true;
         }
         private bool IsNicValid(Student student)
         {
@@ -121,10 +123,9 @@ namespace StudentEnrollmentRepository.DatabaseAccess
             string regex = @"^[^@\s]+@[^@\s]+\.(com|net|org|gov)$";
             return Regex.IsMatch(student.Email, regex, RegexOptions.IgnoreCase);
         }
-        
-            private void InsertInStudentTable(Student student)
+        private void InsertInStudentTable(Student student)
         {
-            { List<SqlParameter> parameterStudentTable = new List<SqlParameter>();
+             List<SqlParameter> parameterStudentTable = new List<SqlParameter>();
             parameterStudentTable.Add(new SqlParameter("@userId", student.UserId));
             parameterStudentTable.Add(new SqlParameter("@name", student.Name));
             parameterStudentTable.Add(new SqlParameter("@surname",student.Surname));
@@ -136,8 +137,7 @@ namespace StudentEnrollmentRepository.DatabaseAccess
             parameterStudentTable.Add(new SqlParameter("@guardianName", student.GuardianName));
             ObtainStatus(student);
             parameterStudentTable.Add(new SqlParameter("@status", student.Status));
-            DbConnect.InsertUpdateDatabase(ConstantSqlQueries.SqlInsertInStudents,parameterStudentTable); }
-           
+            DbConnect.InsertUpdateDatabase(ConstantSqlQueries.SqlInsertInStudents,parameterStudentTable); 
         }
         private int GetStudentID(Student student) {
             int studentId = ConstValues.UndefinedId;

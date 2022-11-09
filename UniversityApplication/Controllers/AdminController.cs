@@ -7,7 +7,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-
 namespace UniversityApplication.Controllers
 {
     public class AdminController : Controller
@@ -21,7 +20,6 @@ namespace UniversityApplication.Controllers
         {
             return View();
         }
-        //GET: StudentList
         [HttpGet]
         public JsonResult GetAllStudents()
         {

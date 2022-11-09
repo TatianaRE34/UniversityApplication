@@ -10,7 +10,6 @@ html, body {
     background-position: center center;
     background-attachment: fixed;
 }
-
 .form-container {
     position: relative;
     max-width: 800px;
@@ -25,8 +24,7 @@ html, body {
     box-shadow: 3px 5px 7px #2c2828;
     border-radius: 50px 0px 50px 0px;
 }
-
-    .form-container .container-content {
+ .form-container .container-content {
         position: relative;
         width: inherit;
         height: inherit;
@@ -37,81 +35,68 @@ html, body {
         margin-right: auto;
         
     }
-
-        .form-container .container-content .header-content {
+.form-container .container-content .header-content {
             color: rgb(0, 0, 0);
             font-size: 20px;
-        }
-
-        .form-container .container-content .input input {
+}
+.form-container .container-content .input input {
             width: 100%;
             border: 3px solid rgb(9, 153, 146);
             border-radius: 30px;
             font-size: large;
             margin: 1%;
             padding: 2%;
-        }
-
-        .form-container .container-content .label {
+}
+.form-container .container-content .label {
             width: 100%;
             font-size: 22px;
             padding-top: 2%;
             padding-bottom: 5%;
             color: rgb(0, 0, 0);
-        }
-
-        .form-container .container-content .message {
+}
+.form-container .container-content .message {
             width: 100%;
             font-size: 22px;
             padding-top: 2%;
             padding-bottom: 5%;
             color: rgb(0, 0, 0);
-        }
-
-        .form-container .container-content .dynamic-subjects {
-            display: inline-block;
-            padding-bottom: 3%;
-        }
-
-            .form-container .container-content .dynamic-subjects .subject {
+ }
+.form-container .container-content .dynamic-subjects {
+    display: inline-block;
+    padding-bottom: 3%;
+}
+.form-container .container-content .dynamic-subjects .subject {
                 padding-bottom: 2%;
-            }
-
-                .form-container .container-content .dynamic-subjects .new-subject select {
+}
+.form-container .container-content .dynamic-subjects .new-subject select {
                     width: 100%;
                     border: 3px solid rgb(9, 153, 146);
                     border-radius: 30px;
                     font-size: large;
                     margin: 1%;
                     padding: 2%;
-                }
-
+ }
 #email:hover, #password:hover, #name:hover, #confirm-password:hover {
     border: 3px solid rgb(13, 83, 79);
 }
-
 .form-container .container-content .action {
     width: 100%;
     display: flex;
 }
-
 .btn {
     padding-top: 2%;
     padding-bottom: 3%;
     padding-right: 5%;
     padding-left: 5%;
 }
-
 .link-content {
     padding-top: 2%;
     padding-bottom: 2%;
 }
-
 .redirect-register, .redirect-forgot-password {
     padding-top: 2%;
     padding-bottom: 2%;
 }
-
 .form-container .action .btn button {
     display: inline-block;
     padding: 1%;
@@ -125,13 +110,11 @@ html, body {
     color: rgb(255, 255, 255);
     border-radius: 30px;
 }
-
 #login:hover, #register:hover {
     border: 3px solid rgb(13, 83, 79);
     background-color: rgb(13, 83, 79);
     color: rgb(251, 251, 251);
 }
-
 .error-msg {
     padding-top: 2%;
     padding-bottom: 4%;
@@ -146,7 +129,6 @@ html, body {
     background-color: transparent;
     border: none;
 }
-
 #remove-dropdown-btn {
     background-image: url("Img/Remove.png");
     background-size: cover;
@@ -155,21 +137,18 @@ html, body {
     background-color: transparent;
     border: none;
 }
-
 @media (min-width:300px) {
     body {
         justify-content: center;
     }
-
     .form-container {
         width: 70%;
         padding-top: 2%;
         min-height: 200px;
         height: 100%;
     }
-
-        .form-container .container-content .action {
+    .form-container .container-content .action {
             width: 100%;
             display: inline-block;
-        }
+    }
 }

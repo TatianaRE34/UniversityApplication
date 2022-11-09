@@ -1,22 +1,18 @@
 ﻿using Configuration.Helper;
 using StudentEnrollmentRepository.ViewModel;
 using StudentEnrollmentRepository.ConstantValues;
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace StudentEnrollmentRepository.ConstantValues
 {
     public  class ConstantSqlQueries
     {
         public const string SqlGetCountOPAccepted = @"SELECT COUNT(Status) as AcceptedCount FROM Student WHERE Status='Accepted'";
-
         public const string SqlGetSubject = @"SELECT [SubjectId],[SubjectName] FROM HSCSubjects";
-        public const string SqlGetStudent = @"SELECT [NIC],[PhoneNumber],[Email] FROM Student 
-                                        WHERE [NIC]=@nic OR [PhoneNumber]=@phoneNumber OR [Email]=@email";
+        public const string SqlGetStudent = @"SELECT [NIC],[PhoneNumber],[Email] FROM StudentWHERE [NIC]=@nic OR [PhoneNumber]=@phoneNumber OR [Email]=@email";
         public const string SqlInsertInStudents =
             @"INSERT INTO Student 
             ([UserId],
@@ -58,7 +54,5 @@ namespace StudentEnrollmentRepository.ConstantValues
         public const string SQLGetUserDetailsWithRoles = @"SELECT U.[UserId],U.[Email],R.[RoleId], R.[RoleName] FROM [Users] as U INNER JOIN [Roles] as R ON U.[RoleId]= R.[RoleId] WHERE U.Email=@email";
         public static string SqlInsertUser = @" INSERT INTO [Users] ([Username],[Email],[Password],[RoleId],[Salt]) VALUES (@name,@email,@password," + ConstValues.DefaultRoleId.ToString() + ",@salt)";
         public const string SqlGetUsernameAndEmail = @"SELECT [Username],[Email] FROM [Users] WHERE Username=@username OR Email=@email";
-
     }
-
 }
